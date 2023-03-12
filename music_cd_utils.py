@@ -69,6 +69,15 @@ def test_new_track_name():
     new_name = new_track_name(old_name)
     assert new_name == "01.wav"
 
+def test_2_new_track_name():
+    """
+    Testet es on Track 1.wav
+    """
+    old_name = "Track 12.wav"
+    new_name = new_track_name(old_name)
+    assert new_name == "12.wav"
+
+
 def _script():
     """
     Runs if this module is called as a
