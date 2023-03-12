@@ -91,7 +91,6 @@ def filepath_wav_to_mp3(filepath_wav):
     filename_mp3 = filepath_mp3.name
     return filepath_mp3
 
-
 def test_filepath_wav_to_mp3():
     """
     From something.wav to something.mp3
@@ -115,6 +114,14 @@ def select_filepaths_wav(folderpath, select_even_prefixes = True):
     return filepaths_wav
 
 
+def make_converting_pairs(folderpath, select_even_prefixes = True):
+    """
+    The converting pairs from wav to mp3 in folderpath.
+    """
+    filepaths_wav = select_filepaths_wav(folderpath = folderpath)
+    filepaths_mp3 = [filepath_wav_to_mp3(filepath_wav) for filepath_wav in filepaths_wav]
+    converting_pairs = zip(filepaths_wav, filepaths_mp3)
+    return converting_pairs
 
 
 
