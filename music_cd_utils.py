@@ -65,20 +65,17 @@ def test_new_track_name():
     """
     Testet es on Track 1.wav
     """
-    _slog.debug("beginning of function")
     old_name = "Track 1.wav"
     new_name = new_track_name(old_name)
     assert new_name == "01.wav"
-    _slog.debug("end of function")
-
 
 def _script():
     """
     Runs if this module is called as a
     Python script.
     """
-    print(sys.argv[0])
-    test_new_track_name()
+    _slog.debug(sys.argv[0])
+
 if __name__ == "__main__":
    _script()
 
