@@ -89,11 +89,8 @@ def filepath_wav_to_mp3(filepath_wav):
     filename_wav = filepath_wav.name
     filepath_mp3 = filepath_wav.with_suffix(".mp3")
     filename_mp3 = filepath_mp3.name
-    print(f"{filename_wav} --> {filename_mp3}")
     return filepath_mp3
 
-
-    
 
 def test_filepath_wav_to_mp3():
     """
@@ -105,8 +102,21 @@ def test_filepath_wav_to_mp3():
     filename_mp3 = filepath_mp3.name
     assert filename_mp3 == "something.mp3"
 
+def select_filepaths_wav(folderpath, select_even_prefixes = True):
+    """
+    Selects the wav files to be converted.
+    """
+    if select_even_prefixes:
+        r = 0
+    else:
+        r = 1
+    filepaths_wav = [folderpath for folderpath in folderpath.glob("*.wav") \
+                     if int(folderpath.name[:2]) % 2 == r]
+    return filepaths_wav
 
-    
+
+
+
 
 def _script():
     """
