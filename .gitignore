@@ -1,0 +1,161 @@
+ This is the repository-wide ignore file. Suffixes below are ignored
+# i.e. committing not allowed.
+
+syntax: glob
+
+
+
+# [deleteme]
+*.Trash
+*.DELETE
+*.DELETEME
+*.Trash
+*~
+
+# [backup]
+*.bak
+
+# [archives]
+*.tar
+*.tar.gz
+*.tar.bz2
+*.zip
+*.gz
+.hg
+
+# [pdflatex]
+*.pdf
+*.aux
+*.out
+*.log
+*.jpg
+*.odg
+*.nav
+*.snm
+*.toc
+*.synctex.gz
+*.vrb
+beamer/*.tex
+beamer/doc*/*.tex
+
+# [editors]
+*.swp
+*.bat
+*.elc
+*~
+*\#*\#
+
+# [Eclipse]
+eclipse-workspace/.metadata
+eclipse-workspace/.recommenders
+eclipse-workspace/RemoteSystemsTempFiles
+
+# [python]
+*.pyc
+*.pyo
+*.bdf
+*.bak
+build/
+dist/
+
+# [Java]
+*.class
+
+# [ipython]
+ipython/.ipythonrc.d/Crash_report_ipython.txt
+ipython/.ipythonrc.d/profile_default/db/dhist
+ipython/.ipythonrc.d/profile_default/history.sqlite
+*.DEPRECATED*
+
+# [micro]
+log.txt
+
+# [miscellaneous]
+*.orig
+*.ori
+*.old
+*.svn
+*.rej
+*.egg-info
+*.git
+*.DELETE
+backup/
+*.log
+
+# [home-aroldo-dot]
+.Trash/
+Trash/
+Trash.*
+config/.config/
+eshell/.eshell/
+local/.local/opt/
+local/.local/share
+
+# [subversion]
+subversion/.subversion/auth
+
+# [git]
+*.git
+
+# [mozilla]
+Cache/
+bookmarkbackups/
+Crash Reports/
+
+# [emacs]
+.emacs.d/session*
+.emacs.d/eshell/history
+.emacs.d/eshell/lastdir
+.emacs.d/tramp
+eshell/history
+eshell/lastdir
+
+# [gnome]
+.gnome2/keyrings/
+.gnome2/keyring*
+gnome2/.gnome2/evince/print-settings
+
+# [mozilla-thunderbird]
+mozilla-thunderbird/
+ImapMail/
+Mail/
+mozilla-thunderbird/.mozilla-thunderbird/*-data/
+
+# [too-big]
+mozilla/
+mozilla/.mozilla/firefox/firefox-aroldo.default/urlclassifier3.sqlite
+mozilla/.mozilla/firefox/firefox-aroldo.default/places.sqlite
+mozilla/.mozilla/firefox/firefox-aroldo.default/urlclassifier3.sqlite
+mozilla/.mozilla/firefox/firefox-aroldo.default/extensions/moonlight@novell.com/plugins/moonlight/libmoonpluginxpi.so
+*/urlclassifier*
+
+# [mozilla]
+cookies/
+cookies.*
+
+# [further-miscellaneous]
+local/.local/share/gvfs-metadata/
+local/.local/share/applications/mimeapps.list
+bash/.bashrc.d/venv-py-2.7.sh
+bash/.bashrc.d/venv-tmp.sh
+gnome2/.gnome2/backgrounds.xml
+gnome2/.gnome2/panel2.d/default/launchers/gedit.desktop
+ipython/.ipythonrc.d/profile_default/db/autorestore/v
+ipython/.ipythonrc.d/profile_default/db/bookmarks
+local/.local/share/desktop-couch/.management_design/e50a2cb154be3a$
+local/.local/share/desktop-couch/management.couch
+local/.local/share/desktop-couch/users.couch
+local/.local/share/desktop-couch/.management_design/*
+
+
+syntax: regexp
+
+# [log]
+.*\.log\.\d{1,2}$
+
+
+
+
+
+
+

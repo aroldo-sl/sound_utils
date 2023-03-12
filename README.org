@@ -1,0 +1,12 @@
+#+title:README.org
+#+date: 2023-03-12T13:36:57
+#+author: Aroldo Souza-Leite
+#+email:  asouzaleite@gmx.de
+#+export_select_tags: export
+#+export_exclude_tags: noexport
+#+startup: showall
+# BEGIN CONTENT
+
+
+# END CONTENT
+* Some utilities for working with music files
