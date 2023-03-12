@@ -9,7 +9,9 @@ wav cds.
 """
 import os, sys, logging
 __level__ = logging.DEBUG
-
+from pathlib import Path
+from pydub import AudioSegment
+wav = AudioSegment.from_wav
 
 
 ######################### <_get_slog>   #########
@@ -78,6 +80,16 @@ def test_2_new_track_name():
     assert new_name == "12.wav"
 
 
+def wav_to_mp3(wav_filename):
+    """
+    Converts wav to mp3.
+    """
+    wav_filepath = Path(wav_filename).resolve()
+    mp3_filepath = wav_filepath.with_suffix(".mp3")
+    print("{wav_filename} --> {mp3_filename}".format(
+        wav_filename = wav_filepath.name,
+        mp3_filename = mp3_filepath.name))
+    
 
 
 def _script():
