@@ -134,7 +134,18 @@ def convert_wav_to_mp3(filepath_wav, filepath_mp3):
     filename_mp3 = str(filepath_mp3)
     wav_song = wav(filename_wav)
     wav_song.export(filename_mp3, format = "mp3", bitrate="192k")
-    
+
+
+def convert_all_wav_to_mp3(folderpath_wav, select_even_prefixes = True):
+    """
+    Converts all selected wav files to mp3.
+    """
+    converting_pairs = make_converting_pairs(
+        folderpath_wav,
+        select_even_prefixes = select_even_prefixes)
+    for filepath_wav, filepath_mp3 in converting_pairs:
+        convert_wav_to_mp3(filepath_wav, filepath_mp3)
+
 
 def _script():
     """
