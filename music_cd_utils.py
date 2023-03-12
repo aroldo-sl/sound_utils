@@ -80,19 +80,33 @@ def test_2_new_track_name():
     assert new_name == "12.wav"
 
 
-def wav_to_mp3(wav_filename):
+def filepath_wav_to_mp3(filepath_wav):
     """
-    Converts wav to mp3.
+    Makes the corresponding  mp3 filenamepath.
     """
-    ## Erstellt den Namen der mp3-Ausgangsdatei.
-    wav_filepath = Path(wav_filename).resolve()
-    mp3_filepath = wav_filepath.with_suffix(".mp3")
-    print("{wav_filename} --> {mp3_filename}".format(
-        wav_filename = wav_filepath.name,
-        mp3_filename = mp3_filepath.name))
-    
+    ## In case filepath_wav is a file name:
+    filepath_wav = Path(filepath_wav).resolve()
+    filename_wav = filepath_wav.name
+    filepath_mp3 = filepath_wav.with_suffix(".mp3")
+    filename_mp3 = filepath_mp3.name
+    print(f"{filename_wav} --> {filename_mp3}")
+    return filepath_mp3
+
+
     
 
+def test_filepath_wav_to_mp3():
+    """
+    From something.wav to something.mp3
+    """
+    filename_wav = "something.wav"
+
+    filepath_mp3 = filepath_wav_to_mp3(filename_wav)
+    filename_mp3 = filepath_mp3.name
+    assert filename_mp3 == "something.mp3"
+
+
+    
 
 def _script():
     """
