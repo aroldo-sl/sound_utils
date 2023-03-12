@@ -63,7 +63,7 @@ def new_track_name(track_name):
 
 def test_new_track_name():
     """
-    Testet es on Track 1.wav
+    Testet es auf Track 1.wav
     """
     old_name = "Track 1.wav"
     new_name = new_track_name(old_name)
@@ -71,11 +71,13 @@ def test_new_track_name():
 
 def test_2_new_track_name():
     """
-    Testet es on Track 1.wav
+    Testet es on Track 12.wav
     """
     old_name = "Track 12.wav"
     new_name = new_track_name(old_name)
     assert new_name == "12.wav"
+
+
 
 
 def _script():
