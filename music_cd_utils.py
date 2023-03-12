@@ -123,7 +123,18 @@ def make_converting_pairs(folderpath, select_even_prefixes = True):
     converting_pairs = zip(filepaths_wav, filepaths_mp3)
     return converting_pairs
 
-
+def convert_wav_to_mp3(filepath_wav, filepath_mp3):
+    """
+    Converts a wav sound file to an mp3 sound file.
+    """
+    filepath_wav = Path(filepath_wav).resolve()
+    filename_wav = str(filepath_wav)
+    _slog.debug(f"converting {filename_wav}")
+    assert filepath_wav.is_file()
+    filename_mp3 = str(filepath_mp3)
+    wav_song = wav(filename_wav)
+    wav_song.export(filename_mp3, format = "mp3", bitrate="192k")
+    
 
 def _script():
     """
