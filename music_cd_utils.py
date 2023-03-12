@@ -84,11 +84,13 @@ def wav_to_mp3(wav_filename):
     """
     Converts wav to mp3.
     """
+    ## Erstellt den Namen der mp3-Ausgangsdatei.
     wav_filepath = Path(wav_filename).resolve()
     mp3_filepath = wav_filepath.with_suffix(".mp3")
     print("{wav_filename} --> {mp3_filename}".format(
         wav_filename = wav_filepath.name,
         mp3_filename = mp3_filepath.name))
+    
     
 
 
