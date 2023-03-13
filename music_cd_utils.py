@@ -173,7 +173,8 @@ def move_mp3_to_folderpath__mp3(folderpath):
     all_mp3 = folderpath.glob("*.mp3")
     for filepath_mp3 in all_mp3:
         new_filepath_mp3 = folderpath__mp3/(filepath_mp3.name)
-        _slog.debug("moving " + str(filepath_mp3) +  " to \n" + str(new_filepath_mp3))
+        filepath_mp3.rename(new_filepath_mp3)
+        _slog.debug("moved " + str(filepath_mp3) +  " to \n" + str(new_filepath_mp3))
 
 
 
