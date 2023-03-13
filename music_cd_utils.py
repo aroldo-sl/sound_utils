@@ -80,28 +80,28 @@ def test_2_new_track_name():
     assert new_name == "12.wav"
 
 
-def filepath_wav_to_mp3(filepath_wav):
+def filePath_wav_to_mp3(filePath_wav):
     """
     Makes the corresponding  mp3 filenamepath.
     """
-    ## In case filepath_wav is a file name:
-    filepath_wav = Path(filepath_wav).resolve()
-    filename_wav = filepath_wav.name
-    filepath_mp3 = filepath_wav.with_suffix(".mp3")
-    filename_mp3 = filepath_mp3.name
-    return filepath_mp3
+    ## In case filePath_wav is a file name:
+    filePath_wav = Path(filePath_wav).resolve()
+    filename_wav = filePath_wav.name
+    filePath_mp3 = filePath_wav.with_suffix(".mp3")
+    filename_mp3 = filePath_mp3.name
+    return filePath_mp3
 
-def test_filepath_wav_to_mp3():
+def test_filePath_wav_to_mp3():
     """
     From something.wav to something.mp3
     """
     filename_wav = "something.wav"
 
-    filepath_mp3 = filepath_wav_to_mp3(filename_wav)
-    filename_mp3 = filepath_mp3.name
+    filePath_mp3 = filePath_wav_to_mp3(filename_wav)
+    filename_mp3 = filePath_mp3.name
     assert filename_mp3 == "something.mp3"
 
-def select_filepaths_wav(folderpath, select_even_prefixes = True):
+def select_filePaths_wav(dirPath, select_even_prefixes = True):
     """
     Selects the wav files to be converted.
     """
@@ -109,72 +109,72 @@ def select_filepaths_wav(folderpath, select_even_prefixes = True):
         r = 0
     else:
         r = 1
-    filepaths_wav = [folderpath for folderpath in folderpath.glob("*.wav") \
-                     if int(folderpath.name[:2]) % 2 == r]
-    return filepaths_wav
+    filePaths_wav = [filePath for filePath in dirPath.glob("*.wav") \
+                     if int(filePath.name[:2]) % 2 == r]
+    return filePaths_wav
 
 
-def make_converting_pairs(folderpath, select_even_prefixes = True):
+def make_converting_pairs(dirPath, select_even_prefixes = True):
     """
-    The converting pairs from wav to mp3 in folderpath.
+    The converting pairs from wav to mp3 in dirPath.
     """
-    filepaths_wav = select_filepaths_wav(folderpath = folderpath)
-    filepaths_mp3 = [filepath_wav_to_mp3(filepath_wav) for filepath_wav in filepaths_wav]
-    converting_pairs = zip(filepaths_wav, filepaths_mp3)
+    filePaths_wav = select_filePaths_wav(dirPath = dirPath)
+    filePaths_mp3 = [filePath_wav_to_mp3(filePath_wav) for filePath_wav in filePaths_wav]
+    converting_pairs = zip(filePaths_wav, filePaths_mp3)
     return converting_pairs
 
-def convert_wav_to_mp3(filepath_wav, filepath_mp3):
+def convert_wav_to_mp3(filePath_wav, filePath_mp3):
     """
     Converts a wav sound file to an mp3 sound file.
     """
-    filepath_wav = Path(filepath_wav).resolve()
-    filename_wav = str(filepath_wav)
+    filePath_wav = Path(filePath_wav).resolve()
+    filename_wav = str(filePath_wav)
     _slog.debug(f"converting {filename_wav}")
-    assert filepath_wav.is_file(), f"{filename_wav} is not a file."
-    filename_mp3 = str(filepath_mp3)
+    assert filePath_wav.is_file(), f"{filename_wav} is not a file."
+    filename_mp3 = str(filePath_mp3)
     wav_song = wav(filename_wav)
     wav_song.export(filename_mp3, format = "mp3", bitrate="192k")
 
 
-def convert_all_wav_to_mp3(folderpath_wav, select_even_prefixes = True):
+def convert_all_wav_to_mp3(dirPath_wav, select_even_prefixes = True):
     """
     Converts all selected wav files to mp3.
     """
     converting_pairs = make_converting_pairs(
-        folderpath_wav,
+        dirPath_wav,
         select_even_prefixes = select_even_prefixes)
-    for filepath_wav, filepath_mp3 in converting_pairs:
-        convert_wav_to_mp3(filepath_wav, filepath_mp3)
+    for filePath_wav, filePath_mp3 in converting_pairs:
+        convert_wav_to_mp3(filePath_wav, filePath_mp3)
 
 
-def make_folderpath__mp3(folderpath):
+def make_dirPath__mp3(dirPath):
     """
-    Makes a parallel folder to folderpath.
+    Makes a parallel folder to dirPath.
     """
-    folderpath = Path(folderpath).resolve()
-    foldername = str(folderpath)
-    assert folderpath.is_dir(), f"{foldername} is not a folder"
-    folderpath__mp3 = folderpath.with_suffix("._mp3")
-    foldername__mp3 = str(folderpath__mp3)
-    assert (not folderpath__mp3.is_file()), f"{foldername__mp3} is a file"
-    folderpath__mp3.mkdir(exist_ok = True)
+    dirPath = Path(dirPath).resolve()
+    foldername = str(dirPath)
+    assert dirPath.is_dir(), f"{foldername} is not a folder"
+    dirPath__mp3 = dirPath.with_suffix("._mp3")
+    foldername__mp3 = str(dirPath__mp3)
+    assert (not dirPath__mp3.is_file()), f"{foldername__mp3} is a file"
+    dirPath__mp3.mkdir(exist_ok = True)
     _slog.info(f"the mp3 files will go to \n{foldername__mp3}")
-    return folderpath__mp3
+    return dirPath__mp3
 
-def move_mp3_to_folderpath__mp3(folderpath):
+def move_mp3_to_dirPath__mp3(dirPath):
     """
     Moves mp3 files to a parallel folder.
     The parallel folder has ._mp3 as a suffix.
     """
-    folderpath = Path(folderpath).resolve()
-    foldername = str(folderpath)
-    assert folderpath.is_dir(), f"{foldername} is not a folder"
-    folderpath__mp3 = make_folderpath__mp3(folderpath)
-    all_mp3 = folderpath.glob("*.mp3")
-    for filepath_mp3 in all_mp3:
-        new_filepath_mp3 = folderpath__mp3/(filepath_mp3.name)
-        filepath_mp3.rename(new_filepath_mp3)
-        _slog.debug("moved " + str(filepath_mp3) +  " to \n" + str(new_filepath_mp3))
+    dirPath = Path(dirPath).resolve()
+    foldername = str(dirPath)
+    assert dirPath.is_dir(), f"{foldername} is not a folder"
+    dirPath__mp3 = make_dirPath__mp3(dirPath)
+    all_mp3 = dirPath.glob("*.mp3")
+    for filePath_mp3 in all_mp3:
+        new_filePath_mp3 = dirPath__mp3/(filePath_mp3.name)
+        filePath_mp3.rename(new_filePath_mp3)
+        _slog.debug("moved " + str(filePath_mp3) +  " to \n" + str(new_filePath_mp3))
 
 
 
