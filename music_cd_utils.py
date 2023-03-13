@@ -147,6 +147,23 @@ def convert_all_wav_to_mp3(folderpath_wav, select_even_prefixes = True):
         convert_wav_to_mp3(filepath_wav, filepath_mp3)
 
 
+def make_folderpath__mp3(folderpath):
+    """
+    Makes a parallel folder to folderpath.
+    """
+    folderpath = Path(folderpath).resolve()
+    foldername = str(folderpath)
+    assert folderpath.is_dir(), f"{foldername} is not a folder"
+    folderpath__mp3 = folderpath.with_suffix("._mp3")
+    foldername__mp3 = str(folderpath__mp3)
+    assert (not folderpath__mp3.is_file()), f"{foldername__mp3} is a file"
+    folderpath__mp3.mkdir(exist_ok = True)
+    _slog.info(f"the mp3 files will go to \n{foldername__mp3}")
+    return folderpath__mp3
+
+
+
+
 def _script():
     """
     Runs if this module is called as a
