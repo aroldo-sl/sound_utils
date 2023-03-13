@@ -161,6 +161,19 @@ def make_folderpath__mp3(folderpath):
     _slog.info(f"the mp3 files will go to \n{foldername__mp3}")
     return folderpath__mp3
 
+def move_mp3_to_folderpath__mp3(folderpath):
+    """
+    Moves mp3 files to a parallel folder.
+    The parallel folder has ._mp3 as a suffix.
+    """
+    folderpath = Path(folderpath).resolve()
+    foldername = str(folderpath)
+    assert folderpath.is_dir(), f"{foldername} is not a folder"
+    folderpath__mp3 = make_folderpath__mp3(folderpath)
+    all_mp3 = folderpath.glob("*.mp3")
+    for filepath_mp3 in all_mp3:
+        new_filepath_mp3 = folderpath__mp3/(filepath_mp3.name)
+        _slog.debug("moving " + str(filepath_mp3) +  " to \n" + str(new_filepath_mp3))
 
 
 
