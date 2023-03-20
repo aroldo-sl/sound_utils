@@ -62,14 +62,14 @@ class TrackName:
     ## A compiled regular expression for
     ## describing the track file name.
     regexp = re.compile(
-        """
+        r"""
         (?P<track>Track\s)  # the trackname begins with 'Track'
         (?P<number>\d{1,2}) # then comes one or two digits
         (?P<suffix>\..+)$   # at the end comes the suffix ('.wav')
         """,
         re.VERBOSE)
 
-    class Error(ValueError):
+    class BadString(ValueError):
         """
         Wrong input for the TrackFilename class.
         """
@@ -82,7 +82,7 @@ class TrackName:
         """
         self.match_obj = TrackName.regexp.match(name)
         if self.match_obj is None:
-            raise TrackName.Error(name)
+            raise TrackName.BadString(name)
         self.name = name
         self.normalized_name  = None
 
@@ -91,7 +91,16 @@ class TrackName:
         Normalizes the track filename using
         filename_re
         """
-        self.normalized_name = "normalized " + self_name
+        self.normalized_name = "normalized " + self.name
+
+def test_TrackName_1():
+    """
+    tests the TrackName class.
+    """
+    name = "Track 1.wav"
+    name_obj = TrackName(name)
+    assert name_obj.name == "Track 1.wav"
+
 
 def filePath_wav_to_mp3(filePath_wav):
     """
@@ -195,6 +204,7 @@ def _script():
     Python script.
     """
     _slog.debug(sys.argv[0])
+
 
 if __name__ == "__main__":
    _script()
