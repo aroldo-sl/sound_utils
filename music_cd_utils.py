@@ -54,14 +54,21 @@ _slog = _get_slog(level = __level__)
 ## to unhide a code block got to the block top and press "<f5> h"
 
 
-def new_track_name(track_name):
+track_pattern = \
     """
-    From Track 1.wav to 01.wav.
-    From Track 12.wav to 12.wav.
-    """
-    track_number_plus_ext = track_name.split(" ")[1]
-    new_name = "{:0>6}".format(track_number_plus_ext)
-    return new_name
+    (?P<track>Track\s)
+    (?P<number>\d{1,2})
+    (?P<suffix>\..+)$
+     """
+
+# def new_track_name(track_name):
+#     """
+#     From Track 1.wav to 01.wav.
+#     From Track 12.wav to 12.wav.
+#     """
+#     track_number_plus_ext = track_name.split(" ")[1]
+#     new_name = "{:0>6}".format(track_number_plus_ext)
+#     return new_name
 
 def test_new_track_name():
     """
