@@ -107,7 +107,7 @@ def filePath_wav_to_mp3(filePath_wav):
     Makes the corresponding  mp3 filenamepath.
     """
     ## In case filePath_wav is a file name:
-    filePath_wav = Path(filePath_wav).resolve()
+    filePath_wav = Path(filePath_wav).expanduser().resolve()
     filename_wav = filePath_wav.name
     filePath_mp3 = filePath_wav.with_suffix(".mp3")
     filename_mp3 = filePath_mp3.name
