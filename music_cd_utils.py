@@ -10,6 +10,7 @@ wav cds.
 import os, sys, logging
 __level__ = logging.DEBUG
 from pathlib import Path
+import re
 from pydub import AudioSegment
 wav = AudioSegment.from_wav
 
@@ -51,41 +52,46 @@ def _get_slog ( level = __level__):
 
 _slog = _get_slog(level = __level__)
 
-## to unhide a code block got to the block top and press "<f5> h"
+## to unhide a code block go to the top of the block and press "<f5> h"
 
-
-track_pattern = \
+class TrackName:
     """
-    (?P<track>Track\s)
-    (?P<number>\d{1,2})
-    (?P<suffix>\..+)$
-     """
-
-# def new_track_name(track_name):
-#     """
-#     From Track 1.wav to 01.wav.
-#     From Track 12.wav to 12.wav.
-#     """
-#     track_number_plus_ext = track_name.split(" ")[1]
-#     new_name = "{:0>6}".format(track_number_plus_ext)
-#     return new_name
-
-def test_new_track_name():
+    The track filename should have the form
+    Track 1.wav or Track 11.wav.
     """
-    Testet es auf Track 1.wav
-    """
-    old_name = "Track 1.wav"
-    new_name = new_track_name(old_name)
-    assert new_name == "01.wav"
+    ## A compiled regular expression for
+    ## describing the track file name.
+    regexp = re.compile(
+        """
+        (?P<track>Track\s)  # the trackname begins with 'Track'
+        (?P<number>\d{1,2}) # then comes one or two digits
+        (?P<suffix>\..+)$   # at the end comes the suffix ('.wav')
+        """,
+        re.VERBOSE)
 
-def test_2_new_track_name():
-    """
-    Testet es on Track 12.wav
-    """
-    old_name = "Track 12.wav"
-    new_name = new_track_name(old_name)
-    assert new_name == "12.wav"
+    class Error(ValueError):
+        """
+        Wrong input for the TrackFilename class.
+        """
 
+    def __init__(self, name):
+        """
+        Expects a standard track file name.
+        Raises TrackName.Error if the track
+        name doesn't match TrackName.regexp.
+        """
+        self.match_obj = TrackName.regexp.match(name)
+        if self.match_obj is None:
+            raise TrackName.Error(name)
+        self.name = name
+        self.normalized_name  = None
+
+    def normalize(self):
+        """
+        Normalizes the track filename using
+        filename_re
+        """
+        self.normalized_name = "normalized " + self_name
 
 def filePath_wav_to_mp3(filePath_wav):
     """
@@ -142,7 +148,6 @@ def convert_wav_to_mp3(filePath_wav, filePath_mp3):
     wav_song = wav(filename_wav)
     wav_song.export(filename_mp3, format = "mp3", bitrate="192k")
 
-
 def convert_all_wav_to_mp3(dirPath_wav, select_even_prefixes = True):
     """
     Converts all selected wav files to mp3.
@@ -152,7 +157,6 @@ def convert_all_wav_to_mp3(dirPath_wav, select_even_prefixes = True):
         select_even_prefixes = select_even_prefixes)
     for filePath_wav, filePath_mp3 in converting_pairs:
         convert_wav_to_mp3(filePath_wav, filePath_mp3)
-
 
 def make_dirPath__mp3(dirPath):
     """
