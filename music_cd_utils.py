@@ -197,13 +197,15 @@ def move_mp3_to_dirPath__mp3(dirPath):
         _slog.debug("moved " + str(filePath_mp3) +  " to \n" + str(new_filePath_mp3))
 
 
-
 def _script():
     """
     Runs if this module is called as a
     Python script.
     """
-    _slog.debug(sys.argv[0])
+    _slog.debug(f"testing {__file__}")
+    if __level__ >= logging.DEBUG:
+        import pytest
+        pytest.main(["-v", __file__])
 
 
 if __name__ == "__main__":
