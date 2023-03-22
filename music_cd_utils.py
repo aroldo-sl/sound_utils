@@ -118,7 +118,7 @@ def filePath_wav_to_mp3(filePath_wav):
     ## In case filePath_wav is not a Path object:
     filePath_wav = Path(filePath_wav).expanduser().resolve()
     filePath_mp3 = filePath_wav.with_suffix(".mp3")
-    _slog.info("{filename}".format(filename = filePath_mp3.name))
+    _slog.debug("resulting file name:{filename}".format(filename = filePath_mp3.name))
     return filePath_mp3
 
 def test_filePath_wav_to_mp3():
