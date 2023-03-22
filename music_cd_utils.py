@@ -126,7 +126,6 @@ def test_filePath_wav_to_mp3():
     From something.wav to something.mp3
     """
     filename_wav = "something.wav"
-
     filePath_mp3 = filePath_wav_to_mp3(filename_wav)
     filename_mp3 = filePath_mp3.name
     assert filename_mp3 == "something.mp3"
