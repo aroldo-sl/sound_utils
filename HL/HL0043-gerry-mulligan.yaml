@@ -1,0 +1,85 @@
+--- # Gerry Mulligan Classics
+
+folder: HL0043-gerry-mulligan
+album:
+  title: Jerry Mulligan Classics
+  subtitle:
+  collection: Jazz Play Along
+  editor: Hal Leonard
+
+tracks:
+
+  #
+  -   1: 
+          title: Apple Core
+          ascii: appel_core
+          sound: full
+  -   2: 
+          title: Apple Core
+          ascii: apple_core
+          sound: karaoke
+
+  #
+  -   3: 
+          title: A Ballad
+          ascii: a_ballad
+          sound: full
+  -   4: 
+          title: A Ballad
+          ascii: a_ballad
+          sound: karaoke
+
+  #
+  -   5: 
+          title: Festive Minor
+          ascii: festive_minor
+          sound: full
+  -   6: 
+          title: Festive Minor
+          ascii: festive_minor
+          sound: karaoke
+
+  #
+  -   7: 
+          title: Five Brothers
+          ascii: five_brothers
+          sound: full
+  -   8: 
+          title: Five Brothers
+          ascii: five_brothers
+          sound: karaoke
+
+  #
+  -   9: 
+          title: Line for Lyons
+          ascii: line_for_lyons
+          sound: full
+  -   10: 
+          title: Line for Lyons
+          ascii: line_for_lyons
+          sound: karaoke
+
+  #
+  -   13: 
+          title: Nights at the Turntable
+          ascii: nights_at_the_turntable
+          sound: full
+  -   14: 
+          title: Nights at the Turntable
+          ascii: nights_at_the_turntable
+          sound: karaoke
+
+  #
+  -   17: 
+          title: Song for Strayhorn
+          ascii: song_for_strayhorn
+          sound: full
+  -   18: 
+          title: Song for Strayhorn
+          ascii: song_for_strayhorn
+          sound: karaoke
+
+
+
+
+  

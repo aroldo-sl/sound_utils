@@ -7,6 +7,7 @@
 Some utilities for processing files copied from
 wav cds.
 """
+import pytest
 import os, sys, logging
 __level__ = logging.DEBUG
 from pathlib import Path
@@ -100,6 +101,14 @@ def test_TrackName_1():
     name = "Track 1.wav"
     name_obj = TrackName(name)
     assert name_obj.name == "Track 1.wav"
+
+def test_TrackName_BadString():
+    name = "trash.rubbish"
+    try:
+        name_obj = TrackName(name)
+    except TrackName.BadString as exc:
+        pytest.fail(str(exc), pytrace = False)
+
 
 
 def filePath_wav_to_mp3(filePath_wav):
@@ -204,7 +213,6 @@ def _script():
     """
     _slog.debug(f"testing {__file__}")
     if __level__ >= logging.DEBUG:
-        import pytest
         pytest.main(["-v", __file__])
 
 
