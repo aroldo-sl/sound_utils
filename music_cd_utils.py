@@ -175,19 +175,26 @@ def convert_all_wav_to_mp3(dirPath_wav, select_even_prefixes = True):
     for filePath_wav, filePath_mp3 in converting_pairs:
         convert_wav_to_mp3(filePath_wav, filePath_mp3)
 
-def make_dirPath__mp3(dirPath):
+def make_dirPath_mp3(dirPath_wav):
     """
-    Makes a parallel folder to dirPath.
+    Makes a parallel folder to dirPath with the wav files.
     """
-    dirPath = Path(dirPath).resolve()
-    foldername = str(dirPath)
-    assert dirPath.is_dir(), f"{foldername} is not a folder"
-    dirPath__mp3 = dirPath.with_suffix("._mp3")
-    foldername__mp3 = str(dirPath__mp3)
-    assert (not dirPath__mp3.is_file()), f"{foldername__mp3} is a file"
-    dirPath__mp3.mkdir(exist_ok = True)
-    _slog.info(f"the mp3 files will go to \n{foldername__mp3}")
-    return dirPath__mp3
+    dirPath_wav = Path(dirPath_wav).expanduser().resolve()
+    assert dirPath_wav.is_dir(), \
+        "{foldername} is not a folder".format(foldername = dirPath_wav.name)
+    dirPath_mp3 = dirPath_wav.with_suffix("._mp3")
+    assert (not dirPath_mp3.is_file())
+     
+    dirPath_mp3.mkdir(exist_ok = True)
+    return dirPath_mp3
+
+def test_make_dirPath_mp3():
+    """
+    Tests make_dirPath_mp3.
+    """
+    dirPath_mp3 = make_dirPath_mp3("rubbish")
+    assert dirPath_mp3.is_dir()
+
 
 def move_mp3_to_dirPath__mp3(dirPath):
     """
