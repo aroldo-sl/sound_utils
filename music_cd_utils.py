@@ -142,13 +142,15 @@ def select_filePaths_wav(dirPath_wav, glob_expression = "*_.wav"):
     return selected_filePaths_wav
 
 
-def make_converting_pairs(dirPath, select_even_prefixes = True):
+def make_converting_pairs(dirPath_wav, glob_expression = "*_.wav"):
     """
-    The converting pairs from wav to mp3 in dirPath.
+    Make a list of the convertiion pairs from wav to mp3 in dirPath_wav.
     """
-    filePaths_wav = select_filePaths_wav(dirPath = dirPath)
-    filePaths_mp3 = [filePath_wav_to_mp3(filePath_wav) for filePath_wav in filePaths_wav]
-    converting_pairs = zip(filePaths_wav, filePaths_mp3)
+    selected_filePaths_wav = select_filePaths_wav(dirPath_wav = dirPath_wav,
+                                                  glob_expression = glob_expression)
+    filePaths_mp3 = [filePath_wav_to_mp3(filePath_wav) for filePath_wav in selected_filePaths_wav]
+    converting_pairs = zip(selected_filePaths_wav, filePaths_mp3)
+    converting_pairs = list(converting_pairs)
     return converting_pairs
 
 def convert_wav_to_mp3(filePath_wav, filePath_mp3):
