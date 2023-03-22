@@ -130,17 +130,16 @@ def test_filePath_wav_to_mp3():
     filename_mp3 = filePath_mp3.name
     assert filename_mp3 == "something.mp3"
 
-def select_filePaths_wav(dirPath, select_even_prefixes = True):
+def select_filePaths_wav(dirPath_wav, glob_expression = "*_.wav"):
     """
     Selects the wav files to be converted.
     """
-    if select_even_prefixes:
-        r = 0
-    else:
-        r = 1
-    filePaths_wav = [filePath for filePath in dirPath.glob("*.wav") \
-                     if int(filePath.name[:2]) % 2 == r]
-    return filePaths_wav
+    # in case dirPath is not a Path object:
+    dirPath_wav = Path(dirPath_wav).expanduser().resolve()
+    #
+    selected_filePaths_wav = dirPath_wav.glob(glob_expression)
+    selected_filePaths_wav = list(selected_filePaths_wav)
+    return selected_filePaths_wav
 
 
 def make_converting_pairs(dirPath, select_even_prefixes = True):
