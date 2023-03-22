@@ -133,6 +133,10 @@ mozilla/.mozilla/firefox/firefox-aroldo.default/extensions/moonlight@novell.com/
 cookies/
 cookies.*
 
+# [sound_utils]
+rubbish/
+octo-Musiksammlung
+
 # [further-miscellaneous]
 local/.local/share/gvfs-metadata/
 local/.local/share/applications/mimeapps.list
