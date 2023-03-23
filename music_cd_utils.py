@@ -111,6 +111,7 @@ def test_TrackName_BadString():
 
 
 
+
 def filePath_wav_to_mp3(filePath_wav):
     """
     Makes the corresponding  mp3 filePath.
@@ -196,21 +197,27 @@ def test_make_dirPath_mp3():
     assert dirPath_mp3.is_dir()
 
 
-def move_mp3_to_dirPath__mp3(dirPath):
-    """
-    Moves mp3 files to a parallel folder.
-    The parallel folder has ._mp3 as a suffix.
-    """
-    dirPath = Path(dirPath).resolve()
-    foldername = str(dirPath)
-    assert dirPath.is_dir(), f"{foldername} is not a folder"
-    dirPath__mp3 = make_dirPath__mp3(dirPath)
-    all_mp3 = dirPath.glob("*.mp3")
-    for filePath_mp3 in all_mp3:
-        new_filePath_mp3 = dirPath__mp3/(filePath_mp3.name)
-        filePath_mp3.rename(new_filePath_mp3)
-        _slog.debug("moved " + str(filePath_mp3) +  " to \n" + str(new_filePath_mp3))
+# def move_mp3_to_dirPath_mp3(dirPath_wav, glob_expression = "*.mp3"):
+#     """
+#     Moves mp3 files from dirPath_wav to a parallel folder
+#     dirPath_mp3
+#     The parallel folder has ._mp3 as a suffix (note the underscore!)
+#     """
+#     for source_filePath in dirPath_wav.glob(glob_expression)
+#     _slog.debug("moved " + str(filePath_mp3) +  " to \n" + str(new_filePath_mp3))
+#     return filePaths_mp3
 
+
+# def test_move_mp3_to_dirPath_mp3():
+#     """
+#     Tests move_mp3_to_dirPath_mp3.
+#     """
+#     dirPath_wav = Path("rubbish").expanduser().resolve()
+#     moved_filePaths_mp3 = move_mp3_to_dirPath_mp3(dirPath_wav = dirPath_wav)
+#     assert not list(dirPath_wav.glob("*.mp3"))
+#     assert set(filePaths_mp3) <= set(list(dirPath_wav.with_suffix("._mp3").) == 
+
+    assert list
 
 def _script():
     """
