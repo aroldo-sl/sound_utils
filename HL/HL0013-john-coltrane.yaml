@@ -1,5 +1,5 @@
 --- # HL0013-john-coltrane
-# incomplete
+
 folder: HL0013-john-coltrane
 album: 
   title: John Coltrane 
@@ -12,61 +12,61 @@ tracks:
 
   #
   -   2: 
-          title: 
-          ascii: 
+          title: Blue Train
+          ascii: blue-train
           sound: karaoke
 
   #
   -   4: 
-          title: 
-          ascii: 
+          title: Countdown
+          ascii: countdown
           sound: karaoke
 
   #
   -   6: 
-          title: 
-          ascii: 
+          title: Cousin Mary
+          ascii: cousin-mary
           sound: karaoke
 
   #
   -   8: 
-          title: 
-          ascii: 
+          title: Equinox
+          ascii: equinox
           sound: karaoke
 
   #
   -   10: 
-          title: 
-          ascii: 
-         sound: karaoke
+          title: Giant Steps
+          ascii: giant-steps
+          sound: karaoke
 
   #
   -   12: 
-          title: 
-          ascii: 
+          title: Impressions
+          ascii: impressions
           sound: karaoke
 
   #
   -   14: 
-          title: 
-          ascii: 
+          title: Lazy Bird
+          ascii: lazy-bird
           sound: karaoke
 
   #
   -   16: 
-          title: 
-          ascii: 
+          title: Moment's Notice
+          ascii: moments-notice
           sound: karaoke
 
   #
   -  18: 
-          title: 
-          ascii: 
+          title: Mr. P. C.
+          ascii: mister-p-c
           sound: karaoke
 
   #
   -  20: 
-          title: 
-          ascii: 
+          title: Naima
+          ascii: naima
           sound: karaoke
 
