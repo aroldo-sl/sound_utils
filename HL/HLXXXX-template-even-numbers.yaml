@@ -1,11 +1,11 @@
 --- # HLXXXX-template-even-numbers
 # incomplete
-folder: 
-album:
-  title: 
-  subtitle:
-  collection: 
-  editor: 
+folder: HLXXXX-template-even-numbers
+album: 
+  title: Some Album  
+  subtitle: Some Subtitle
+  collection: Jazz Play Along
+  editor: Hal Leonard
 
 karaoke : [2,4,6,8,10,12,14,16,18]
 tracks:
@@ -28,6 +28,7 @@ tracks:
           ascii: 
           sound: karaoke
 
+
   #
   -   8: 
           title: 
@@ -38,7 +39,7 @@ tracks:
   -   10: 
           title: 
           ascii: 
-         sound: karaoke
+          sound: karaoke
 
   #
   -   12: 
