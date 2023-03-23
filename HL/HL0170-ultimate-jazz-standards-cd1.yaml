@@ -1,0 +1,72 @@
+--- # HL0170-ultimate-jazz-standards-cd1
+# incomplete
+folder: HL0170-ultimate-jazz-standards-cd1
+album: 
+  title: Ultimate Jazz Standards CD1
+  subtitle: 
+  collection: Jazz Play Along 
+  editor: Hal Leonard
+
+karaoke : [2,4,6,8,10,12,14,16,18]
+tracks:
+
+  #
+  -   2: 
+          title: At Last 
+          ascii: at-last
+          sound: karaoke
+
+  #
+  -   4: 
+          title: The Boulevard of Broken Dreams
+          ascii: boulevard-of-broken-dreams
+          sound: karaoke
+
+  #
+  -   6: 
+          title: I'm in the Mood for Love
+          ascii: im-in-the-mood-for-love
+          sound: karaoke
+
+  #
+  -    8: 
+          title: Just Friends
+          ascii: just-friends
+          sound: karaoke
+
+  #
+  -   10: 
+          title: Laura 
+          ascii: laura
+          sound: karaoke
+
+  #
+  -   12: 
+          title: Lester Leaps in
+          ascii: lester-leaps-in
+          sound: karaoke
+
+  #
+  -   14: 
+          title: Li'l Darling
+          ascii: little-darling
+          sound: karaoke
+
+  #
+  -   16: 
+          title: The More I See You
+          ascii: the-more-i-see-you
+          sound: karaoke
+
+  #
+  -   18: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -  20: 
+          title: 
+          ascii: 
+          sound: karaoke
+
