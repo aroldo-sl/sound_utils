@@ -1,0 +1,73 @@
+--- # HLXXXX-template-even-numbers
+# incomplete
+folder: 
+album:
+  title: 
+  subtitle:
+  collection: 
+  editor: 
+
+karaoke : [2,4,6,8,10,12,14,16,18]
+tracks:
+
+  #
+  -   2: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   4: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   6: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+    #
+  -   6: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+
+  #
+  -   8: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   10: 
+          title: 
+          ascii: 
+         sound: karaoke
+
+  #
+  -   12: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   14: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   16: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -  18: 
+          title: 
+          ascii: 
+          sound: karaoke
+
