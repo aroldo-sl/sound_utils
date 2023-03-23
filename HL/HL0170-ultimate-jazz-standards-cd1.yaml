@@ -6,7 +6,7 @@ album:
   collection: Jazz Play Along 
   editor: Hal Leonard
 
-karaoke : [2,4,6,8,10,12,14,16,18]
+karaoke : [2,4,6,8,10,12,14,16]
 tracks:
 
   #
@@ -56,16 +56,3 @@ tracks:
           title: The More I See You
           ascii: the-more-i-see-you
           sound: karaoke
-
-  #
-  -   18: 
-          title: 
-          ascii: 
-          sound: karaoke
-
-  #
-  -  20: 
-          title: 
-          ascii: 
-          sound: karaoke
-
