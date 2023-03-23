@@ -1,5 +1,5 @@
 --- # HL0012-essential-jazz-classics
-
+# incomplete
 folder: HL0012-essential-jazz-classics
 album:
   title: Essential Jazz Classics
@@ -7,13 +7,67 @@ album:
   collection: Jazz Play Along
   editor: Hal Leonard
 
+karaoke : [2,4,6,8,10,12,14,16,18]
 tracks:
 
   #
-  -   1: 
+  -   2: 
           title: 
           ascii: 
-          sound: full
+          sound: karaoke
+
   #
-  -   3:
+  -   4: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   6: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+    #
+  -   6: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+
+  #
+  -   8: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   10: 
+          title: 
+          ascii: 
+         sound: karaoke
+
+  #
+  -   12: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   14: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -   16: 
+          title: 
+          ascii: 
+          sound: karaoke
+
+  #
+  -  18: 
+          title: 
+          ascii: 
+          sound: karaoke
 
