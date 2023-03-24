@@ -55,6 +55,7 @@ _slog = _get_slog(level = __level__)
 
 ## to unhide a code block go to the top of the block and press "<f5> h"
 
+
 class TrackName:
     """
     The track filename should have the form
@@ -108,8 +109,6 @@ def test_TrackName_BadString():
         name_obj = TrackName(name)
     except TrackName.BadString as exc:
         pytest.fail(str(exc), pytrace = False)
-
-
 
 
 def filePath_wav_to_mp3(filePath_wav):
