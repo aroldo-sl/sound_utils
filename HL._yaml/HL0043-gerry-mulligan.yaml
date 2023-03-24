@@ -11,74 +11,74 @@ karaoke : [2,4,6,8,10,12,14,16,18]
 tracks:
 
   #
-  -   1: 
-          title: Apple Core
-          ascii: appel-core
-          sound: full
-  -   2: 
-          title: Apple Core
-          ascii: apple-core
-          sound: karaoke
+  1: 
+      title: Apple Core
+      ascii: appel-core
+      sound: full
+  2: 
+      title: Apple Core
+      ascii: apple-core
+      sound: karaoke
 
   #
-  -   3: 
-          title: A Ballad
-          ascii: a-ballad
-          sound: full
-  -   4: 
-          title: A Ballad
-          ascii: a-ballad
-          sound: karaoke
+  3: 
+      title: A Ballad
+      ascii: a-ballad
+      sound: full
+  4: 
+      title: A Ballad
+      ascii: a-ballad
+      sound: karaoke
 
   #
-  -   5: 
-          title: Festive Minor
-          ascii: festive-minor
-          sound: full
-  -   6: 
-          title: Festive Minor
-          ascii: festive-minor
-          sound: karaoke
+  5: 
+      title: Festive Minor
+      ascii: festive-minor
+      sound: full
+  6: 
+      title: Festive Minor
+      ascii: festive-minor
+      sound: karaoke
 
   #
-  -   7: 
-          title: Five Brothers
-          ascii: five-brothers
-          sound: full
-  -   8: 
-          title: Five Brothers
-          ascii: five-brothers
-          sound: karaoke
+  7: 
+      title: Five Brothers
+      ascii: five-brothers
+      sound: full
+  8: 
+      title: Five Brothers
+      ascii: five-brothers
+      sound: karaoke
 
   #
-  -   9: 
-          title: Line for Lyons
-          ascii: line-for-lyons
-          sound: full
-  -   10: 
-          title: Line for Lyons
-          ascii: line-for-lyons
-          sound: karaoke
+  9: 
+      title: Line for Lyons
+      ascii: line-for-lyons
+      sound: full
+  10: 
+      title: Line for Lyons
+      ascii: line-for-lyons
+      sound: karaoke
 
   #
-  -   13: 
-          title: Nights at the Turntable
-          ascii: nights-at-the-turntable
-          sound: full
-  -   14: 
-          title: Nights at the Turntable
-          ascii: nights-at-the-turntable
-          sound: karaoke
+  13: 
+      title: Nights at the Turntable
+      ascii: nights-at-the-turntable
+      sound: full
+  14: 
+      title: Nights at the Turntable
+      ascii: nights-at-the-turntable
+      sound: karaoke
 
   #
-  -   17: 
-          title: Song for Strayhorn
-          ascii: song-for-strayhorn
-          sound: full
-  -   18: 
-          title: Song for Strayhorn
-          ascii: song-for-strayhorn
-          sound: karaoke
+  17: 
+      title: Song for Strayhorn
+      ascii: song-for-strayhorn
+      sound: full
+  18: 
+      title: Song for Strayhorn
+      ascii: song-for-strayhorn
+      sound: karaoke
 
 
 

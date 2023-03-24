@@ -58,12 +58,12 @@ def retrieve_data_from_yamlPath(yamlPath = None):
     Loads data from a Yaml file.
     Returns a dictionary.
     """
-    data = {}
+    yaml_data = {}
     if yamlPath is None:
-        return data
+        return yaml_data
     with yamlPath.open() as yaml_file:
-        data = load(yaml_file, Loader)
-    return data
+        yaml_data = load(yaml_file, Loader)
+    return yaml_data
 
 def test_retrieve_data_from_yamlPath():
     """
@@ -71,6 +71,15 @@ def test_retrieve_data_from_yamlPath():
     """
     data = retrieve_data_from_yamlPath()
     assert type(data) is dict
+
+def zip_yaml_data_with_dirlist(yaml_data, normalized_trackDirPath):
+    """
+    Zips the track names from a data dictionary with
+    the normalized trackPaths from a folderPath with tracks.
+    """
+    yaml_tracks = [yaml_data.get("tracks")]
+
+
 
 def _script():
     """
