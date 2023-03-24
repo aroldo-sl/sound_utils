@@ -8,8 +8,9 @@ inline documentation of this module (99:.\*.py)
 """
 import os, sys, logging
 from pathlib import Path
-from pyYaml import load, dump, Loader, Dumper
-__level__ = logging.INFO
+from yaml import load, dump, Loader, Dumper
+import pytest
+__level__ = logging.DEBUG
 
 
 
@@ -52,16 +53,32 @@ _slog = _get_slog(level = __level__)
 
 ## to unhide a code block got to the block top and press "<f5> h"
 
-def retrieve_data_from_yamlPath(yamlPath):
-    data = 
+def retrieve_data_from_yamlPath(yamlPath = None):
+    """
+    Loads data from a Yaml file.
+    Returns a dictionary.
+    """
+    data = {}
+    if yamlPath is None:
+        return data
+    with yamlPath.open() as yaml_file:
+        data = load(yaml_file, Loader)
+    return data
 
+def test_retrieve_data_from_yamlPath():
+    """
+    Tests if the return value is a dictionary.
+    """
+    data = retrieve_data_from_yamlPath()
+    assert type(data) is dict
 
 def _script():
     """
     Runs if this module is called as a
     Python script.
     """
-    _slog.info("Perfect!")
+    _slog.debug("running script {script}".format(script = __file__))
+    pytest.main(["-v", __file__])
 
 if __name__ == "__main__":
    _script()
