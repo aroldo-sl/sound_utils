@@ -12,57 +12,57 @@ karaoke: [2,4,6,8,10,12,14,16,18]
 tracks:
 
   #
-  -   2: 
+      2: 
           title: Epistrophy
           ascii: epistrophy
           sound: karaoke
 
 
   #
-  -   4: 
+      4: 
           title: 52nd Street Theme
           ascii: 52nd-street-theme
           sound: karaoke
 
 
   #
-  -   6: 
+      6: 
           title: I Mean You
           ascii: i-mean-you
           sound: karaoke
 
   #
-  -   8: 
+      8: 
           title: In Walked Bud
           ascii: in-walked-bud
           sound: karaoke
 
   #
-  -   10: 
+      10: 
           title: Introspection
           ascii: introspection
           sound: karaoke
 
   #
-  -   12: 
+      12: 
           title: Monk's Mood
           ascii: monks-mood
           sound: karaoke
 
   #
-  -   14: 
+      14: 
           title: Off Minor
           ascii: off-minor
           sound: karaoke
 
   #
-  -   16: 
+      16: 
           title: Ruby, My Dear
           ascii: ruby-my-dear
           sound: karaoke
 
   #
-  -   18: 
+      18: 
           title: Well, You Needn't (It's Over Now)
           ascii: well-you-need-not
           sound: karaoke

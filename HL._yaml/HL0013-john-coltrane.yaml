@@ -11,61 +11,61 @@ karaoke : [2,4,6,8,10,12,14,16,18,20]
 tracks:
 
   #
-  -   2: 
+      2: 
           title: Blue Train
           ascii: blue-train
           sound: karaoke
 
   #
-  -   4: 
+      4: 
           title: Countdown
           ascii: countdown
           sound: karaoke
 
   #
-  -   6: 
+      6: 
           title: Cousin Mary
           ascii: cousin-mary
           sound: karaoke
 
   #
-  -   8: 
+      8: 
           title: Equinox
           ascii: equinox
           sound: karaoke
 
   #
-  -   10: 
+      10: 
           title: Giant Steps
           ascii: giant-steps
           sound: karaoke
 
   #
-  -   12: 
+      12: 
           title: Impressions
           ascii: impressions
           sound: karaoke
 
   #
-  -   14: 
+      14: 
           title: Lazy Bird
           ascii: lazy-bird
           sound: karaoke
 
   #
-  -   16: 
+      16: 
           title: Moment's Notice
           ascii: moments-notice
           sound: karaoke
 
   #
-  -  18: 
+     18: 
           title: Mr. P. C.
           ascii: mister-p-c
           sound: karaoke
 
   #
-  -  20: 
+     20: 
           title: Naima
           ascii: naima
           sound: karaoke

@@ -53,32 +53,33 @@ _slog = _get_slog(level = __level__)
 
 ## to unhide a code block got to the block top and press "<f5> h"
 
-def retrieve_data_from_yamlPath(yamlPath = None):
+def retrieve_yaml_data(yaml_filePath, yaml_dirPath = None):
     """
     Loads data from a Yaml file.
     Returns a dictionary.
+    Default yaml_dirPath ist HL._yaml.
     """
+    # in case yaml_filePath is a path string:
+    yaml_filePath = Path(yaml_filePath)
+    if yaml_dirPath is None:
+        yaml_dirPath = Path("HL._yaml/").expanduser().resolve()
     yaml_data = {}
-    if yamlPath is None:
-        return yaml_data
-    with yamlPath.open() as yaml_file:
+    yaml_filePath = yaml_dirPath/yaml_filePath.name
+    if not yaml_filePath.is_file():
+        raise ValueError(yaml_filePath + "is not a file")
+    with yaml_filePath.open() as yaml_file:
         yaml_data = load(yaml_file, Loader)
     return yaml_data
 
-def test_retrieve_data_from_yamlPath():
+
+
+def test_retrieve_yaml_data():
     """
     Tests if the return value is a dictionary.
     """
-    data = retrieve_data_from_yamlPath()
+    yaml_filename = "HL0026-charlie-parker.yaml"
+    data = retrieve_yaml_data(yaml_filename)
     assert type(data) is dict
-
-def zip_yaml_data_with_dirlist(yaml_data, normalized_trackDirPath):
-    """
-    Zips the track names from a data dictionary with
-    the normalized trackPaths from a folderPath with tracks.
-    """
-    yaml_tracks = [yaml_data.get("tracks")]
-
 
 
 def _script():

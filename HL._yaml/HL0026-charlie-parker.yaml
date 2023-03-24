@@ -11,61 +11,61 @@ karaoke : [2,4,6,8,10,12,14,16,20]
 tracks:
 
   #
-  -   2: 
+      2: 
           title: Now's the Time
           ascii: now-is-the-time
           sound: karaoke
 
   #
-  -   4: 
+      4: 
           title: Scrapple from the Apple
           ascii: scrapple-from-the-apple
           sound: karaoke
 
   #
-  -   6: 
+      6: 
           title: Yardbird Suite
           ascii: yardbird-suite
           sound: karaoke
 
   #
-  -   8: 
+      8: 
           title: Moose the Mouche
           ascii: moose-the-mouche
           sound: karaoke
 
   #
-  -   10: 
+      10: 
           title: Confirmation
           ascii: confirmation
           sound: karaoke
 
   #
-  -   12: 
+      12: 
           title: Ornithology
           ascii: ornithology
           sound: karaoke
 
   #
-  -   14: 
+      14: 
           title: My Little Suede Shoes
           ascii: my-little-suede-shoes
           sound: karaoke
 
   #
-  -   16: 
+      16: 
           title: Donna Lee
           ascii: donna-lee
           sound: karaoke
 
   #
-  -  18: 
+     18: 
           title: Au Privave
           ascii: au-privave
           sound: karaoke
 
   #
-  -  20: 
+     20: 
           title: Billie's Bounce (Bill's Bounce)
           ascii: billies-bounce
           sound: karaoke

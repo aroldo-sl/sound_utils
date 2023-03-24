@@ -10,43 +10,43 @@ karaoke : [2,4,6,8,10,12,14]
 tracks:
 
   #
-  -   2: 
+      2: 
           title: Secret Love
           ascii: secret-love
           sound: karaoke
 
   #
-  -   4: 
+      4: 
           title: Star Eyes
           ascii: star-eyes
           sound: karaoke
 
   #
-  -   6: 
+      6: 
           title: Street of Dreams
           ascii: street-of-dreams
           sound: karaoke
 
   #
-  -    8: 
+       8: 
           title: Taking a Chance on Love
           ascii: taking-a-chance-on-love
           sound: karaoke
 
   #
-  -   10: 
+      10: 
           title: That's All
           ascii: that-is-all
           sound: karaoke
 
   #
-  -   12: 
+      12: 
           title: You and the Night and the Music
           ascii: you-and-night-and-music
           sound: karaoke
 
   #
-  -   14: 
+      14: 
           title: You Stepped out of a Dream
           ascii: yout-stepped-out-of-a-dream
           sound: karaoke

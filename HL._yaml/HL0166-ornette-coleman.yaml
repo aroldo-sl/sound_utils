@@ -11,49 +11,49 @@ karaoke : [2,4,6,8,10,12,14,16]
 tracks:
 
   #
-  -   2: 
+      2: 
           title: The Blessing
           ascii: the-blessing
           sound: karaoke
 
   #
-  -   4: 
+      4: 
           title: Chippie
           ascii: chippie
           sound: karaoke
 
   #
-  -   6: 
+      6: 
           title: The Disguise
           ascii: the-disguise
           sound: karaoke
 
   #
-  -   8: 
+      8: 
           title: Jayne
           ascii: jayne
           sound: karaoke
 
   #
-  -   10: 
+      10: 
           title: Rejoicing
           ascii: rejoicing
           sound: karaoke
 
   #
-  -   12: 
+      12: 
           title: Tears Inside
           ascii: tears-inside
           sound: karaoke
 
   #
-  -   14: 
+      14: 
           title: Turnaround
           ascii: turnaround
           sound: karaoke
 
   #
-  -   16: 
+      16: 
           title: When will the Blues Leave
           ascii: when-will-the-blues-leave
           sound: karaoke

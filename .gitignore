@@ -57,6 +57,7 @@ eclipse-workspace/RemoteSystemsTempFiles
 *.bak
 build/
 dist/
+.pytest_cache/
 
 # [Java]
 *.class
