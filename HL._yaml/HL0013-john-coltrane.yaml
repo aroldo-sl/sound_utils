@@ -59,14 +59,13 @@ tracks:
           sound: karaoke
 
   #
-     18: 
+      18: 
           title: Mr. P. C.
           ascii: mister-p-c
           sound: karaoke
 
   #
-     20: 
+      20: 
           title: Naima
           ascii: naima
           sound: karaoke
-

@@ -9,6 +9,7 @@ rename the track files correspondingly.
 """
 import os, sys, logging
 from pathlib import Path
+import pytest
 from yaml import load, Loader, dump, Dumper
 __level__ = logging.INFO
 
@@ -59,12 +60,25 @@ def retrieve_data_from_yaml(yaml_filePath):
     Retrieves the track titles from a yaml file,
     """
     yaml_filePath = Path(yaml_filePath).expanduser().resolve()
-    if not (yaml_filePath.is_file() and yaml_filePath.suffix= ".yaml"):
-        raise ValueError("{} is not a yaml file.".)
+    if not (yaml_filePath.is_file() and yaml_filePath.suffix == ".yaml"):
+        raise ValueError("{yaml_filename} is not a yaml file.".format(yaml_filePath = yaml_filePath.name))
     data = None
     with yaml_filePath.open() as yaml_stream:
         data = load(yaml_stream, Loader)
     return data
+
+def test_retrieve_data_from_yaml(tmp_yaml_filePath = None):
+    """
+    Uses a test yaml file.
+    """
+    # setup
+    if tmp_yaml_filePath is None:
+        tmp_yaml_filePath = Path("HL._yaml/HL0013-john-coltrane.yaml").expanduser().resolve()
+    if not tmp_yaml_filePath.is_file():
+        raise FileNotFoundError(str(tmp_yaml_filePath))
+    #
+    data = retrieve_data_from_yaml(yaml_filePath = tmp_yaml_filePath)
+    assert type(data) is dict
 
 
 def _script():
@@ -73,6 +87,7 @@ def _script():
     Python script.
     """
     _slog.info("Running " + __file__)
+    pytest.main(["-v", __file__])
 
 if __name__ == "__main__":
    _script()
