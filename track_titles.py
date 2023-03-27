@@ -67,13 +67,11 @@ def retrieve_data_from_yaml(yamlPath):
         data = load(yaml_stream, Loader)
     return data
 
-def test_retrieve_data_from_yaml(tmp_yamlPath = None):
+def test_retrieve_data_from_yaml(tmp_yamlPath = "HL._yaml/HL0049-miles-davies-standards.yaml"):
     """
     Uses a test yaml file.
     """
-    # setup
-    if tmp_yamlPath is None:
-        tmp_yamlPath = Path("HL._yaml/HL0049-miles-davies-standards.yaml").expanduser().resolve()
+    tmp_yamlPath = Path(tmp_yamlPath).expanduser().resolve()
     if not tmp_yamlPath.is_file():
         raise FileNotFoundError(str(tmp_yamlPath))
     #
