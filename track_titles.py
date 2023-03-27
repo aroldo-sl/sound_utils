@@ -7,7 +7,7 @@
 Retriev the track titles from .yaml files and
 rename the track files correspondingly.
 """
-import os, sys, logging
+import os, sys, logging, re, Template
 from pathlib import Path
 import pytest
 from pprint import pprint, pformat
@@ -118,17 +118,37 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     """
     Makes the renaming pairs.
     """
-    renaming_paris = []
+    track_name_re_template  =  Template(
+                                  r"""
+                                  (?P<prefix>\A\d{2})         # a number formatted to two digits
+                                  (?P<title>.*?)              # the song title if present
+                                  (?P<suffix>\${suffix}$$)    # the suffix (file name extension)
+                                  """)
+    _slog.debug(track_name_re_template.template)
+    track_name_re = track_name_re_template.substitute(suffix = suffix)
+    track_name_re = re.compile(track_name_re, re.X)
     trackPaths = select_original_trackPaths(trackDirPath = trackDirPath,
                                             suffix = suffix)
-    data = retrieve_data_from_yaml(yamlPath = yamlPath)
-    return renaming_pairs
-    
-def test_make_renaming_pairs():
+    track_filenames = [trackPath.name for trackPath in trackPaths]
+    track_filename_matches = [track_name_re.match(track_filename) for track_filename in track_filenames]
+    track_filename_tuples = [(track_filename_match.group("prefix"),
+                              track_filename_match.group("title"),
+                              track_filename_match.group("suffix")) for \
+                              track_filename_match in track_filename_matches]
+    track_filename_tuples.sort()
+    return track_filename_tuples
+
+   
+def test_make_renaming_pairs(yamlPath = "HL._yaml/HL0012-essential-jazz-classics",
+                             trackDirPath = "octo-Musiksammlung/HL/HL0012-essential-jazz-classics",
+                             suffix = ".wav"):
     """
     uses test_select_original_trckPaths.
     """
-    trackDirPath, suffix, trackPaths = test_select_original_trackPaths()
+    track_filename_tuples = make_renaming_pairs(yamlPath = yamlPath,
+                                                trackDirPath = trackDirPath,
+                                                suffix = suffix)
+
 
     
 
