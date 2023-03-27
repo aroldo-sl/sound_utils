@@ -138,6 +138,7 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     yaml_data = retrieve_data_from_yaml(yamlPath = yamlPath)
     yaml_tracks_dict = yaml_data["tracks"]
     yaml_tracks_dict = {"{:>02}".format(key):value for key,value in yaml_tracks_dict.items()}
+    yaml_tracks_dict = {key:value["ascii"] for key, value in yaml_tracks_dict.items()}
     return yaml_tracks_dict, track_filename_dict
 
    
