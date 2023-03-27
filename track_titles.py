@@ -93,7 +93,7 @@ def test_make_renaming_pairs():
     """
     uses test_select_original_trckPaths.
     """
-    test_select_original_trackPaths()
+    trackPaths = test_select_original_trackPaths()
 
 
 def test_select_original_trackPaths_error():
