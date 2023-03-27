@@ -7,7 +7,8 @@
 Retriev the track titles from .yaml files and
 rename the track files correspondingly.
 """
-import os, sys, logging, re, Template
+import os, sys, logging, re
+from string import Template
 from pathlib import Path
 import pytest
 from pprint import pprint, pformat
@@ -124,7 +125,6 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
                                   (?P<title>.*?)              # the song title if present
                                   (?P<suffix>\${suffix}$$)    # the suffix (file name extension)
                                   """)
-    _slog.debug(track_name_re_template.template)
     track_name_re = track_name_re_template.substitute(suffix = suffix)
     track_name_re = re.compile(track_name_re, re.X)
     trackPaths = select_original_trackPaths(trackDirPath = trackDirPath,
@@ -148,13 +148,10 @@ def test_make_renaming_pairs(yamlPath = "HL._yaml/HL0012-essential-jazz-classics
     track_filename_tuples = make_renaming_pairs(yamlPath = yamlPath,
                                                 trackDirPath = trackDirPath,
                                                 suffix = suffix)
-
+    _slog.debug(pformat(track_filename_tuples))
+    assert type(track_filename_tuples) is list
 
     
-
-
-
-
 def _script():
     """
     Runs if this module is called as a
