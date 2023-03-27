@@ -55,6 +55,7 @@ _slog = _get_slog(level = __level__)
 
 ## to unhide a code block got to the block top and press "<f5> h"
 
+
 def retrieve_data_from_yaml(yamlPath):
     """
     Retrieves the track titles from a yaml file,
@@ -66,6 +67,7 @@ def retrieve_data_from_yaml(yamlPath):
     with yamlPath.open() as yaml_stream:
         data = load(yaml_stream, Loader)
     return data
+
 
 def select_original_trackPaths(trackDirPath, suffix = ".wav"):
     """
@@ -80,15 +82,6 @@ def select_original_trackPaths(trackDirPath, suffix = ".wav"):
     trackPaths.sort()
     return trackPaths
 
-
-def test_select_original_trackPaths():
-    """
-    Tests select_original_trackPaths on a concrete directory.
-    """
-    trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
-    trackPaths = select_original_trackPaths(trackDirPath)
-    assert type(trackPaths) is list
-    return trackPaths
     
 def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     """
@@ -109,7 +102,6 @@ def test_select_original_trackPaths_error():
     """
     with pytest.raises(FileNotFoundError) as fnfe:
         tracks = select_original_trackPaths("xy")
-    _slog.debug(fnfe.value)
     assert True
 
 
@@ -120,8 +112,6 @@ def test_retrieve_data_from_yaml(tmp_yamlPath = None):
     # setup
     if tmp_yamlPath is None:
         tmp_yamlPath = Path("HL._yaml/HL0013-john-coltrane.yaml").expanduser().resolve()
-    _slog.debug("testing on {yaml_filename}".format(
-        yaml_filename = "HL0013-john-coltrane.yaml"))
     if not tmp_yamlPath.is_file():
         raise FileNotFoundError(str(tmp_yamlPath))
     #
@@ -129,9 +119,16 @@ def test_retrieve_data_from_yaml(tmp_yamlPath = None):
     assert type(data) is dict
     assert data["folder"] == "HL0013-john-coltrane"
 
-# # @pytest.mark.xfail(reason = "this test must fail")
-# def test_x():
-#     raise Exception("failing on purpuse")  
+
+def test_select_original_trackPaths():
+    """
+    Tests select_original_trackPaths on a concrete directory.
+    """
+    trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
+    trackPaths = select_original_trackPaths(trackDirPath)
+    assert type(trackPaths) is list
+    return trackPaths
+
 
 def _script():
     """
