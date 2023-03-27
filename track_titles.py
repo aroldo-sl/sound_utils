@@ -77,7 +77,7 @@ def test_retrieve_data_from_yaml(tmp_yamlPath = "HL._yaml/HL0049-miles-davies-st
     #
     data = retrieve_data_from_yaml(yamlPath = tmp_yamlPath)
     assert type(data) is dict
-    assert data["folder"] == "HL0049-miles-davies-standards"
+    assert data["folder"] == tmp_yamlPath.with_suffix("").name
 
 
 def select_original_trackPaths(trackDirPath, suffix = ".wav"):
