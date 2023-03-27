@@ -105,6 +105,7 @@ def test_select_original_trackPaths_error():
 def test_select_original_trackPaths():
     """
     Tests select_original_trackPaths on a concrete directory.
+    returns trackDirPath, suffix, trackPaths
     """
     trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
     suffix = ".wav"
@@ -128,6 +129,7 @@ def test_make_renaming_pairs():
     uses test_select_original_trckPaths.
     """
     trackDirPath, suffix, trackPaths = test_select_original_trackPaths()
+
     
 
 
