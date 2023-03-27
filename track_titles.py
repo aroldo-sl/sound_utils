@@ -61,7 +61,7 @@ def retrieve_data_from_yaml(yamlPath):
     """
     yamlPath = Path(yamlPath).expanduser().resolve()
     if not (yamlPath.is_file() and yamlPath.suffix == ".yaml"):
-        raise ValueError("{yaml_filename} is not a yaml file.".format(yamlPath = yamlPath.name))
+        raise ValueError("{yaml_filename} is not a yaml file.".format(yaml_filename = yamlPath.name))
     data = None
     with yamlPath.open() as yaml_stream:
         data = load(yaml_stream, Loader)
@@ -73,13 +73,13 @@ def test_retrieve_data_from_yaml(tmp_yamlPath = None):
     """
     # setup
     if tmp_yamlPath is None:
-        tmp_yamlPath = Path("HL._yaml/HL0013-john-coltrane.yaml").expanduser().resolve()
+        tmp_yamlPath = Path("HL._yaml/HL0049-miles-davies-standards.yaml").expanduser().resolve()
     if not tmp_yamlPath.is_file():
         raise FileNotFoundError(str(tmp_yamlPath))
     #
     data = retrieve_data_from_yaml(yamlPath = tmp_yamlPath)
     assert type(data) is dict
-    assert data["folder"] == "HL0013-john-coltrane"
+    assert data["folder"] == "HL0049-miles-davies-standards"
 
 
 def select_original_trackPaths(trackDirPath, suffix = ".wav"):
@@ -108,7 +108,7 @@ def test_select_original_trackPaths():
     Tests select_original_trackPaths on a concrete directory.
     returns trackDirPath, suffix, trackPaths
     """
-    trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
+    trackDirPath = Path("octo-Musiksammlung/HL/HL0049-miles-davies-standards")
     suffix = ".wav"
     trackPaths = select_original_trackPaths(trackDirPath = trackDirPath, suffix = suffix)
     assert type(trackPaths) is list
@@ -136,11 +136,12 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
                               track_filename_match.group("suffix")) for \
                               track_filename_match in track_filename_matches]
     track_filename_tuples.sort()
+    data = retrieve_data_from_yaml(yamlPath = yamlPath)
     return track_filename_tuples
 
    
-def test_make_renaming_pairs(yamlPath = "HL._yaml/HL0012-essential-jazz-classics",
-                             trackDirPath = "octo-Musiksammlung/HL/HL0012-essential-jazz-classics",
+def test_make_renaming_pairs(yamlPath = "HL._yaml/HL0049-miles-davies-standards.yaml",
+                             trackDirPath = "octo-Musiksammlung/HL/HL0049-miles-davies-standards",
                              suffix = ".wav"):
     """
     uses test_select_original_trckPaths.
