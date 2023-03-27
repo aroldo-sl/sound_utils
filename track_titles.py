@@ -139,7 +139,11 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     yaml_tracks_dict = yaml_data["tracks"]
     yaml_tracks_dict = {"{:>02}".format(key):value for key,value in yaml_tracks_dict.items()}
     yaml_tracks_dict = {key:value["ascii"] for key, value in yaml_tracks_dict.items()}
-    return yaml_tracks_dict, track_filename_dict
+    renaming_pairs = []
+    for key, value in yaml_tracks_dict.items():
+        if key in track_filename_dict:
+            renaming_pairs.append((track_filename_dict[key], value))
+    return renaming_pairs
 
    
 def test_make_renaming_pairs(yamlPath = _yamlPath,
@@ -148,12 +152,11 @@ def test_make_renaming_pairs(yamlPath = _yamlPath,
     """
     uses test_select_original_trckPaths.
     """
-    yaml_tracks_dict, track_filename_dict = make_renaming_pairs(yamlPath = yamlPath,
+    renaming_pairs = make_renaming_pairs(yamlPath = yamlPath,
                                                 trackDirPath = trackDirPath,
                                                 suffix = suffix)
-    _slog.debug("\n" + pformat( track_filename_dict))
-    _slog.debug("\n" + pformat(yaml_tracks_dict))
-    assert type(track_filename_dict) is dict
+    _slog.debug("\n" + pformat(renaming_pairs))
+    assert type(renaming_pairs) is list
 
     
 def _script():
