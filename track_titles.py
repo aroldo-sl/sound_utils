@@ -55,15 +55,15 @@ _slog = _get_slog(level = __level__)
 
 ## to unhide a code block got to the block top and press "<f5> h"
 
-def retrieve_data_from_yaml(yaml_filePath):
+def retrieve_data_from_yaml(yamlPath):
     """
     Retrieves the track titles from a yaml file,
     """
-    yaml_filePath = Path(yaml_filePath).expanduser().resolve()
-    if not (yaml_filePath.is_file() and yaml_filePath.suffix == ".yaml"):
-        raise ValueError("{yaml_filename} is not a yaml file.".format(yaml_filePath = yaml_filePath.name))
+    yamlPath = Path(yamlPath).expanduser().resolve()
+    if not (yamlPath.is_file() and yamlPath.suffix == ".yaml"):
+        raise ValueError("{yaml_filename} is not a yaml file.".format(yamlPath = yamlPath.name))
     data = None
-    with yaml_filePath.open() as yaml_stream:
+    with yamlPath.open() as yaml_stream:
         data = load(yaml_stream, Loader)
     return data
 
@@ -108,19 +108,19 @@ def test_select_original_trackPaths_error():
     assert True
 
 
-def test_retrieve_data_from_yaml(tmp_yaml_filePath = None):
+def test_retrieve_data_from_yaml(tmp_yamlPath = None):
     """
     Uses a test yaml file.
     """
     # setup
-    if tmp_yaml_filePath is None:
-        tmp_yaml_filePath = Path("HL._yaml/HL0013-john-coltrane.yaml").expanduser().resolve()
+    if tmp_yamlPath is None:
+        tmp_yamlPath = Path("HL._yaml/HL0013-john-coltrane.yaml").expanduser().resolve()
     _slog.debug("testing on {yaml_filename}".format(
         yaml_filename = "HL0013-john-coltrane.yaml"))
-    if not tmp_yaml_filePath.is_file():
-        raise FileNotFoundError(str(tmp_yaml_filePath))
+    if not tmp_yamlPath.is_file():
+        raise FileNotFoundError(str(tmp_yamlPath))
     #
-    data = retrieve_data_from_yaml(yaml_filePath = tmp_yaml_filePath)
+    data = retrieve_data_from_yaml(yamlPath = tmp_yamlPath)
     assert type(data) is dict
     assert data["folder"] == "HL0013-john-coltrane"
 
