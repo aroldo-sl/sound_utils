@@ -14,7 +14,8 @@ import pytest
 from pprint import pprint, pformat
 from yaml import load, Loader, dump, Dumper
 __level__ = logging.DEBUG
-
+_trackDirPath = "tests/HL/HL0049-miles-davies-standards"
+_yamlPath = "tests/HL._yaml/HL0049-miles-davies-standards.yaml"
 
 ######################### <_get_slog>   #########
 def _get_slog ( level = __level__):
@@ -67,7 +68,7 @@ def retrieve_data_from_yaml(yamlPath):
         data = load(yaml_stream, Loader)
     return data
 
-def test_retrieve_data_from_yaml(yamlPath = "HL._yaml/HL0049-miles-davies-standards.yaml"):
+def test_retrieve_data_from_yaml(yamlPath = _yamlPath):
     """
     Uses a test yaml file.
     """
@@ -106,7 +107,7 @@ def test_select_original_trackPaths():
     Tests select_original_trackPaths on a concrete directory.
     returns trackDirPath, suffix, trackPaths
     """
-    trackDirPath = Path("octo-Musiksammlung/HL/HL0049-miles-davies-standards")
+    trackDirPath = Path(_trackDirPath)
     suffix = ".wav"
     trackPaths = select_original_trackPaths(trackDirPath = trackDirPath, suffix = suffix)
     assert type(trackPaths) is list
@@ -138,8 +139,8 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     return track_filename_tuples
 
    
-def test_make_renaming_pairs(yamlPath = "HL._yaml/HL0049-miles-davies-standards.yaml",
-                             trackDirPath = "octo-Musiksammlung/HL/HL0049-miles-davies-standards",
+def test_make_renaming_pairs(yamlPath = _yamlPath,
+                             trackDirPath = _trackDirPath,
                              suffix = ".wav"):
     """
     uses test_select_original_trckPaths.

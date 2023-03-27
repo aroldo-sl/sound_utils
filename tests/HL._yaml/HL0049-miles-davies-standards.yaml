@@ -1,0 +1,72 @@
+--- # HL0049-miles-davies-standards
+
+folder: HL0049-miles-davies-standards
+album: 
+  title: Miles Davies Standards
+  subtitle: 10 Jazz Classics
+  collection: Jazz Play Along
+  editor: Hal Leonard
+
+karaoke : [2,4,6,8,10,12,14,16,18]
+tracks:
+
+  #
+      2: 
+          title: Autumn Leaves
+          ascii: autumn-leaves
+          sound: karaoke
+
+  #
+      4: 
+          title: Bye Bye Blackbird
+          ascii: bye-bye-blackbird
+          sound: karaoke
+
+  #
+      6: 
+          title: Dare That Dream
+          ascii: dare-that-dream
+          sound: karaoke
+
+  #
+      8: 
+          title: Raw Deep in the Ocean (How High the Sky)
+          ascii: raw-deep-in-the-ocean
+          sound: karaoke
+
+  #
+      10: 
+          title: I Loves You, Pergy
+          ascii: i-loves-you-pergy
+          sound: karaoke
+
+  #
+      12: 
+          title: If I were a Bell
+          ascii: if-i-wera-a-bell
+          sound: karaoke
+
+  #
+      14: 
+          title: My Funny Valentine
+          ascii: my-funny-valentine
+          sound: karaoke
+
+  #
+      16: 
+          title: On Green Delfin Street
+          ascii: on-green-delfin-street
+          sound: karaoke
+
+  #
+      18: 
+          title: Some Day My Prince Will Come
+          ascii: some-day-my-prince-will-come
+          sound: karaoke
+
+  #
+      20: 
+          title: Yesterdays
+          ascii: yesterdays
+          sound: karaoke
+
