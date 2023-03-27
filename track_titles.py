@@ -87,14 +87,18 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     """
     Makes the renaming pairs.
     """
+    renaming_paris = []
     trackPaths = select_original_trackPaths(trackDirPath = trackDirPath,
                                             suffix = suffix)
+    data = retrieve_data_from_yaml(yamlPath = yamlPath)
+    return renaming_pairs
+    
 def test_make_renaming_pairs():
     """
     uses test_select_original_trckPaths.
     """
-    trackPaths = test_select_original_trackPaths()
-
+    trackDirPath, suffix, trackPaths = test_select_original_trackPaths()
+    
 
 def test_select_original_trackPaths_error():
     """
@@ -125,9 +129,10 @@ def test_select_original_trackPaths():
     Tests select_original_trackPaths on a concrete directory.
     """
     trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
-    trackPaths = select_original_trackPaths(trackDirPath)
+    suffix = ".wav"
+    trackPaths = select_original_trackPaths(trackDirPath = trackDirPath, suffix = suffix)
     assert type(trackPaths) is list
-    return trackPaths
+    return trackDirPath, suffix, trackPaths
 
 
 def _script():
