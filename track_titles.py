@@ -121,6 +121,7 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     track_name_re_template  =  Template(
                                   r"""
                                   (?P<prefix>\A\d{2})         # a number formatted to two digits
+                                  (?P<hyphen>-)               # the hyphen after the track number
                                   (?P<title>.*?)              # the song title if present
                                   (?P<suffix>\${suffix}$$)    # the suffix (file name extension)
                                   """)
@@ -131,6 +132,7 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     track_filenames = [trackPath.name for trackPath in trackPaths]
     track_filename_matches = [track_name_re.match(track_filename) for track_filename in track_filenames]
     track_filename_tuples = [(track_filename_match.group("prefix"),
+                              track_filename_match.group("hyphen"),
                               track_filename_match.group("title"),
                               track_filename_match.group("suffix")) for \
                               track_filename_match in track_filename_matches]
