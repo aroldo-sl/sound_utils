@@ -15,7 +15,6 @@ from yaml import load, Loader, dump, Dumper
 __level__ = logging.DEBUG
 
 
-
 ######################### <_get_slog>   #########
 def _get_slog ( level = __level__):
     "Wrapper for the get_slog function"
@@ -55,7 +54,6 @@ _slog = _get_slog(level = __level__)
 
 ## to unhide a code block got to the block top and press "<f5> h"
 
-
 def retrieve_data_from_yaml(yamlPath):
     """
     Retrieves the track titles from a yaml file,
@@ -67,6 +65,20 @@ def retrieve_data_from_yaml(yamlPath):
     with yamlPath.open() as yaml_stream:
         data = load(yaml_stream, Loader)
     return data
+
+def test_retrieve_data_from_yaml(tmp_yamlPath = None):
+    """
+    Uses a test yaml file.
+    """
+    # setup
+    if tmp_yamlPath is None:
+        tmp_yamlPath = Path("HL._yaml/HL0013-john-coltrane.yaml").expanduser().resolve()
+    if not tmp_yamlPath.is_file():
+        raise FileNotFoundError(str(tmp_yamlPath))
+    #
+    data = retrieve_data_from_yaml(yamlPath = tmp_yamlPath)
+    assert type(data) is dict
+    assert data["folder"] == "HL0013-john-coltrane"
 
 
 def select_original_trackPaths(trackDirPath, suffix = ".wav"):
@@ -82,7 +94,25 @@ def select_original_trackPaths(trackDirPath, suffix = ".wav"):
     trackPaths.sort()
     return trackPaths
 
-    
+def test_select_original_trackPaths_error():
+    """
+    Tests the FileNotFoundError.
+    """
+    with pytest.raises(FileNotFoundError) as fnfe:
+        tracks = select_original_trackPaths("xy")
+    assert True
+
+def test_select_original_trackPaths():
+    """
+    Tests select_original_trackPaths on a concrete directory.
+    """
+    trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
+    suffix = ".wav"
+    trackPaths = select_original_trackPaths(trackDirPath = trackDirPath, suffix = suffix)
+    assert type(trackPaths) is list
+    return trackDirPath, suffix, trackPaths
+
+
 def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     """
     Makes the renaming pairs.
@@ -100,39 +130,7 @@ def test_make_renaming_pairs():
     trackDirPath, suffix, trackPaths = test_select_original_trackPaths()
     
 
-def test_select_original_trackPaths_error():
-    """
-    Tests the FileNotFoundError.
-    """
-    with pytest.raises(FileNotFoundError) as fnfe:
-        tracks = select_original_trackPaths("xy")
-    assert True
 
-
-def test_retrieve_data_from_yaml(tmp_yamlPath = None):
-    """
-    Uses a test yaml file.
-    """
-    # setup
-    if tmp_yamlPath is None:
-        tmp_yamlPath = Path("HL._yaml/HL0013-john-coltrane.yaml").expanduser().resolve()
-    if not tmp_yamlPath.is_file():
-        raise FileNotFoundError(str(tmp_yamlPath))
-    #
-    data = retrieve_data_from_yaml(yamlPath = tmp_yamlPath)
-    assert type(data) is dict
-    assert data["folder"] == "HL0013-john-coltrane"
-
-
-def test_select_original_trackPaths():
-    """
-    Tests select_original_trackPaths on a concrete directory.
-    """
-    trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
-    suffix = ".wav"
-    trackPaths = select_original_trackPaths(trackDirPath = trackDirPath, suffix = suffix)
-    assert type(trackPaths) is list
-    return trackDirPath, suffix, trackPaths
 
 
 def _script():
