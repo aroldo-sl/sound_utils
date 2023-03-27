@@ -67,16 +67,16 @@ def retrieve_data_from_yaml(yaml_filePath):
         data = load(yaml_stream, Loader)
     return data
 
-def select_original_trackPaths(track_dirPath, suffix = ".wav"):
+def select_original_trackPaths(trackDirPath, suffix = ".wav"):
     """
     Selects and orders the original track paths.
     """
-    track_dirPath=(Path(track_dirPath)).expanduser().resolve()
-    if not track_dirPath.is_dir():
-        msg = "{d} is not a directory".format(d = track_dirPath)
+    trackDirPath=(Path(trackDirPath)).expanduser().resolve()
+    if not trackDirPath.is_dir():
+        msg = "{d} is not a directory".format(d = trackDirPath)
         raise FileNotFoundError(msg)
     trackPaths = []
-    trackPaths = list(track_dirPath.glob("*{suffix}".format(suffix = suffix)))
+    trackPaths = list(trackDirPath.glob("*{suffix}".format(suffix = suffix)))
     trackPaths.sort()
     return trackPaths
 
@@ -85,13 +85,17 @@ def test_select_original_trackPaths():
     """
     Tests select_original_trackPaths on a concrete directory.
     """
-    track_dirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
-    track_Paths = select_original_trackPaths(track_dirPath)
-    msg = "testing on {track_dirPath}".format(track_dirPath = track_dirPath)
+    trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
+    track_Paths = select_original_trackPaths(trackDirPath)
+    msg = "testing on {trackDirPath}".format(trackDirPath = trackDirPath)
     msg = msg + "\n" + pformat([trackPath.name for trackPath in track_Paths])
     _slog.debug(msg)
     assert type(track_Paths) is list
     
+def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
+    """
+    Makes the renaming pairs.
+    """
 
 
 def test_select_original_trackPaths_error():
