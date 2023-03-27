@@ -136,8 +136,8 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
                               track_filename_match in track_filename_matches]
     track_filename_dict = {entry[0]:entry[0:] for entry in track_filename_tuples}
     yaml_data = retrieve_data_from_yaml(yamlPath = yamlPath)
-    yaml_tracks = yaml_data["tracks"]
-    return yaml_tracks, track_filename_dict
+    yaml_tracks_dict = yaml_data["tracks"]
+    return yaml_tracks_dict, track_filename_dict
 
    
 def test_make_renaming_pairs(yamlPath = _yamlPath,
@@ -146,11 +146,11 @@ def test_make_renaming_pairs(yamlPath = _yamlPath,
     """
     uses test_select_original_trckPaths.
     """
-    yaml_tracks, track_filename_dict = make_renaming_pairs(yamlPath = yamlPath,
+    yaml_tracks_dict, track_filename_dict = make_renaming_pairs(yamlPath = yamlPath,
                                                 trackDirPath = trackDirPath,
                                                 suffix = suffix)
     _slog.debug("\n" + pformat( track_filename_dict))
-    _slog.debug("\n" + pformat(yaml_tracks))
+    _slog.debug("\n" + pformat(yaml_tracks_dict))
     assert type(track_filename_dict) is dict
 
     
