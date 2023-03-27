@@ -123,6 +123,7 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
                                   (?P<prefix>\A\d{2})         # a number formatted to two digits
                                   (?P<hyphen>-)               # the hyphen after the track number
                                   (?P<title>.*?)              # the song title if present
+                                  (?P<underscore>_*?)         # maybe an underscore
                                   (?P<suffix>\${suffix}$$)    # the suffix (file name extension)
                                   """)
     track_name_re = track_name_re_template.substitute(suffix = suffix)
@@ -131,12 +132,13 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
                                             suffix = suffix)
     track_filenames = [trackPath.name for trackPath in trackPaths]
     track_filename_matches = [track_name_re.match(track_filename) for track_filename in track_filenames]
-    track_filename_tuples = [(track_filename_match.group("prefix"),
-                              track_filename_match.group("hyphen"),
-                              track_filename_match.group("title"),
-                              track_filename_match.group("suffix")) for \
-                              track_filename_match in track_filename_matches]
-    track_filename_dict = {entry[0]:entry[0:] for entry in track_filename_tuples}
+    track_filename_dict = {track_filename_match.group("prefix"):
+                              {"prefix":track_filename_match.group("prefix"),
+                               "hyphen":track_filename_match.group("hyphen"),
+                               "title" :track_filename_match.group("title"),
+                               "underscore":track_filename_match.group("underscore"),
+                               "suffix": track_filename_match.group("suffix")} 
+                             for  track_filename_match in track_filename_matches}
     yaml_data = retrieve_data_from_yaml(yamlPath = yamlPath)
     yaml_tracks_dict = yaml_data["tracks"]
     yaml_tracks_dict = {"{:>02}".format(key):value for key,value in yaml_tracks_dict.items()}
