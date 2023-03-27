@@ -10,6 +10,7 @@ rename the track files correspondingly.
 import os, sys, logging
 from pathlib import Path
 import pytest
+from pprint import pprint, pformat
 from yaml import load, Loader, dump, Dumper
 __level__ = logging.DEBUG
 
@@ -54,7 +55,6 @@ _slog = _get_slog(level = __level__)
 
 ## to unhide a code block got to the block top and press "<f5> h"
 
-
 def retrieve_data_from_yaml(yaml_filePath):
     """
     Retrieves the track titles from a yaml file,
@@ -67,7 +67,7 @@ def retrieve_data_from_yaml(yaml_filePath):
         data = load(yaml_stream, Loader)
     return data
 
-def select_original_trackPaths(track_dirPath):
+def select_original_trackPaths(track_dirPath, suffix = ".wav"):
     """
     Selects and orders the original track paths.
     """
@@ -76,10 +76,25 @@ def select_original_trackPaths(track_dirPath):
         msg = "{d} is not a directory".format(d = track_dirPath)
         raise FileNotFoundError(msg)
     trackPaths = []
+    trackPaths = list(track_dirPath.glob("*{suffix}".format(suffix = suffix)))
+    trackPaths.sort()
     return trackPaths
 
 
 def test_select_original_trackPaths():
+    """
+    Tests select_original_trackPaths on a concrete directory.
+    """
+    track_dirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
+    track_Paths = select_original_trackPaths(track_dirPath)
+    msg = "testing on {track_dirPath}".format(track_dirPath = track_dirPath)
+    msg = msg + "\n" + pformat([trackPath.name for trackPath in track_Paths])
+    _slog.debug(msg)
+    assert type(track_Paths) is list
+    
+
+
+def test_select_original_trackPaths_error():
     """
     Tests the FileNotFoundError.
     """
