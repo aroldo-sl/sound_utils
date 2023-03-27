@@ -149,7 +149,7 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
               old_name_dict = track_filename_dict[key]
               (prefix, hyphen, title, underscore, suffix) = tuple(old_name_dict.values())
               old_name = prefix + hyphen + title + underscore + suffix
-              new_name = value
+              new_name = prefix + hyphen + value + underscore + suffix
               renaming_pairs.append((old_name, new_name))
     return renaming_pairs
 
