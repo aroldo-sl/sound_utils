@@ -67,17 +67,17 @@ def retrieve_data_from_yaml(yamlPath):
         data = load(yaml_stream, Loader)
     return data
 
-def test_retrieve_data_from_yaml(tmp_yamlPath = "HL._yaml/HL0049-miles-davies-standards.yaml"):
+def test_retrieve_data_from_yaml(yamlPath = "HL._yaml/HL0049-miles-davies-standards.yaml"):
     """
     Uses a test yaml file.
     """
-    tmp_yamlPath = Path(tmp_yamlPath).expanduser().resolve()
-    if not tmp_yamlPath.is_file():
-        raise FileNotFoundError(str(tmp_yamlPath))
+    yamlPath = Path(yamlPath).expanduser().resolve()
+    if not yamlPath.is_file():
+        raise FileNotFoundError(str(yamlPath))
     #
-    data = retrieve_data_from_yaml(yamlPath = tmp_yamlPath)
+    data = retrieve_data_from_yaml(yamlPath = yamlPath)
     assert type(data) is dict
-    assert data["folder"] == tmp_yamlPath.with_suffix("").name
+    assert data["folder"] == yamlPath.with_suffix("").name
 
 
 def select_original_trackPaths(trackDirPath, suffix = ".wav"):
