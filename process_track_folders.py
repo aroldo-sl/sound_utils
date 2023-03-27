@@ -4,7 +4,7 @@
 # @author: Aroldo Souza-Leite
 # @description: 
 """
-inline documentation of this module (99:.\*.py)
+inline documentation of this module (99:.\\*.py)
 """
 import os, sys, logging
 from pathlib import Path
@@ -71,7 +71,9 @@ def retrieve_yaml_data(yaml_filePath, yaml_dirPath = None):
         yaml_data = load(yaml_file, Loader)
     return yaml_data
 
-
+@pytest.
+def test_fail():
+    assert False
 
 def test_retrieve_yaml_data():
     """
@@ -92,7 +94,9 @@ def _script():
 
 if __name__ == "__main__":
    _script()
+   sys.exit()
 
+_script()
 
 # yasnippet: 
 

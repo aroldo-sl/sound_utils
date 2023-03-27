@@ -11,7 +11,7 @@ import os, sys, logging
 from pathlib import Path
 import pytest
 from yaml import load, Loader, dump, Dumper
-__level__ = logging.INFO
+__level__ = logging.DEBUG
 
 
 
@@ -67,6 +67,28 @@ def retrieve_data_from_yaml(yaml_filePath):
         data = load(yaml_stream, Loader)
     return data
 
+def select_original_trackPaths(track_dirPath):
+    """
+    Selects and orders the original track paths.
+    """
+    track_dirPath=(Path(track_dirPath)).expanduser().resolve()
+    if not track_dirPath.is_dir():
+        msg = "{d} is not a directory".format(d = track_dirPath)
+        raise FileNotFoundError(msg)
+    trackPaths = []
+    return trackPaths
+
+
+def test_select_original_trackPaths():
+    """
+    Tests the FileNotFoundError.
+    """
+    with pytest.raises(FileNotFoundError) as fnfe:
+        tracks = select_original_trackPaths("xy")
+    _slog.debug(fnfe.value)
+    assert True
+
+
 def test_retrieve_data_from_yaml(tmp_yaml_filePath = None):
     """
     Uses a test yaml file.
@@ -74,12 +96,18 @@ def test_retrieve_data_from_yaml(tmp_yaml_filePath = None):
     # setup
     if tmp_yaml_filePath is None:
         tmp_yaml_filePath = Path("HL._yaml/HL0013-john-coltrane.yaml").expanduser().resolve()
+    _slog.debug("testing on {yaml_filename}".format(
+        yaml_filename = "HL0013-john-coltrane.yaml"))
     if not tmp_yaml_filePath.is_file():
         raise FileNotFoundError(str(tmp_yaml_filePath))
     #
     data = retrieve_data_from_yaml(yaml_filePath = tmp_yaml_filePath)
     assert type(data) is dict
+    assert data["folder"] == "HL0013-john-coltrane"
 
+# # @pytest.mark.xfail(reason = "this test must fail")
+# def test_x():
+#     raise Exception("failing on purpuse")  
 
 def _script():
     """
