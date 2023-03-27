@@ -86,16 +86,21 @@ def test_select_original_trackPaths():
     Tests select_original_trackPaths on a concrete directory.
     """
     trackDirPath = Path("octo-Musiksammlung/HL/HL0012-essential-jazz-classics")
-    track_Paths = select_original_trackPaths(trackDirPath)
-    msg = "testing on {trackDirPath}".format(trackDirPath = trackDirPath)
-    msg = msg + "\n" + pformat([trackPath.name for trackPath in track_Paths])
-    _slog.debug(msg)
-    assert type(track_Paths) is list
+    trackPaths = select_original_trackPaths(trackDirPath)
+    assert type(trackPaths) is list
+    return trackPaths
     
 def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
     """
     Makes the renaming pairs.
     """
+    trackPaths = select_original_trackPaths(trackDirPath = trackDirPath,
+                                            suffix = suffix)
+def test_make_renaming_pairs():
+    """
+    uses test_select_original_trckPaths.
+    """
+    test_select_original_trackPaths()
 
 
 def test_select_original_trackPaths_error():
