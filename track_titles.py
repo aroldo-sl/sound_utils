@@ -203,21 +203,25 @@ def test_make_parallel_mp3_folder_2l(track_dirPath = "xyz"):
     make_parallel_mp3_folder(track_dirPath = track_dirPath)
     assert True
 
-def test_make_parallel_mp3_folder_3(test_dirPath = "tests"):
+@pytest.mark.xfail(reason = "The parallel mp3 folder exists as a file.")
+def test_make_parallel_mp3_folder_3(test_dirPath = "tests", suffix = "._wav"):
     """
     The parallel folders exists as a file.
     """
     test_dirPath = Path(test_dirPath).expanduser().resolve()
     tmp_track_dirPath = test_dirPath/"tmp_track_dirPath"
     tmp_track_dirPath.mkdir(exist_ok = True, parents = True)
-    _slog.info("{tmp_track_dirPath}=".format(tmp_track_dirPath = tmp_track_dirPath))
-    assert True
-    
-
-
-    def setup():
-        tmp_track_dirPath= Path("tests/tmp_dirPath")
-
+    wrong_filePath = tmp_track_dirPath.with_suffix(suffix)
+    msg_fmt = \
+"""
+temporary track folder:{tmp_track_dirPath}
+wrong parallel mp3 folder:{wrong_filePath}                
+"""
+    msg = msg_fmt.format(
+        tmp_track_dirPath = tmp_track_dirPath,
+        wrong_filePath = wrong_filePath)
+    _slog.info(msg)
+    assert False
 
     
 def _script():
