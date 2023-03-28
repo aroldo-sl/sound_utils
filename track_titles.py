@@ -56,6 +56,62 @@ _slog = _get_slog(level = __level__)
 
 ## to unhide a code block got to the block top and press "<f5> h"
 
+class TrackName:
+    """
+    The track filename should have the form
+    Track 1.wav or Track 11.wav.
+    """
+    ## A compiled regular expression for
+    ## describing the track file name.
+    regexp = re.compile(
+        r"""
+        (?P<track>Track\s)  # the trackname begins with 'Track'
+        (?P<number>\d{1,2}) # then comes one or two digits
+        (?P<suffix>\..+)$   # at the end comes the suffix ('.wav')
+        """,
+        re.VERBOSE)
+
+    class BadString(ValueError):
+        """
+        Wrong input for the TrackFilename class.
+        """
+
+    def __init__(self, name):
+        """
+        Expects a standard track file name.
+        Raises TrackName.Error if the track
+        name doesn't match TrackName.regexp.
+        """
+        self.match_obj = TrackName.regexp.match(name)
+        if self.match_obj is None:
+            raise TrackName.BadString(name)
+        self.name = name
+        self.normalized_name  = None
+
+    def normalize(self):
+        """
+        Normalizes the track filename using
+        filename_re
+        """
+        self.normalized_name = "normalized " + self.name
+
+def test_TrackName_1():
+    """
+    tests the TrackName class.
+    """
+    name = "Track 1.wav"
+    name_obj = TrackName(name)
+    assert name_obj.name == "Track 1.wav"
+
+@pytest.mark.xfail(reason = "The track name has the wrong format.")
+def test_TrackName_BadString():
+    name = "trash.rubbish"
+    try:
+        name_obj = TrackName(name)
+    except TrackName.BadString as exc:
+        pytest.fail(str(exc), pytrace = False)
+
+
 def retrieve_data_from_yaml(yamlPath):
     """
     Retrieves the track titles from a yaml file,
