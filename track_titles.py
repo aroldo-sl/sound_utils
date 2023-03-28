@@ -194,7 +194,7 @@ def test_make_parallel_mp3_folder(track_dirPath = _track_dirPath):
     assert track_dirPath_mp3.is_dir()
     return track_dirPath_mp3
 
-@pytest.mark.xfail(raises = FileNotFoundError)
+@pytest.mark.xfail(raises = FileNotFoundError, reason = "a FileNotFoundError war raised")
 def test_make_parallel_mp3_folder_2l(track_dirPath = "xyz"):
     """
     xyz does not exist
@@ -204,7 +204,7 @@ def test_make_parallel_mp3_folder_2l(track_dirPath = "xyz"):
     assert True
 
 @pytest.mark.xfail(reason = "The parallel mp3 folder exists as a file.")
-def test_make_parallel_mp3_folder_3(test_dirPath = "tests", suffix = "._wav"):
+def test_make_parallel_mp3_folder_3(test_dirPath = "tests"):
     """
     The parallel folders exists as a file.
     """
@@ -221,9 +221,9 @@ wrong parallel mp3 folder:{wrong_filePath}
         tmp_track_dirPath = tmp_track_dirPath,
         wrong_filePath = wrong_filePath)
     _slog.info(msg)
-    assert False
+    track_dirpath_mp3 = make_parallel_mp3_folder(track_dirPath = tmp_track_dirPath )
+    assert True
 
-    
 def _script():
     """
     Runs if this module is called as a
