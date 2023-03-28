@@ -166,6 +166,33 @@ def test_make_renaming_pairs(yamlPath = _yamlPath,
     _slog.debug("\n" + pformat(renaming_pairs))
     assert True
 
+
+def make_parallel_mp3_folder(trackDirPath):
+    """
+    Creates a parallel forder for mp3 sound files.
+    returns trackDirPath_mp3.
+    """
+    trackDirPath = Path(trackDirPath).expanduser().resolve()
+    if not trackDirPath.is_dir():
+        raise FileNotFoundError("{trackDirPath} is not a folder.".format(
+            trackDirPath = str(trackDirPath)))
+    trackDirPath_mp3 = trackDirPath.with_suffix("._mp3")
+    if trackDirPath_mp3.is_file():
+        raise ValueError("There is already a file {trackDirPath_mp3}".format(
+            trackDirPath_mp3 = str(trackDirPath_mp3)))
+    trackDirPath_mp3.mkdir(exist_ok = True)
+    _slog.info("mp3 files go to {trackDirPath_mp3}".format(
+        trackDirPath_mp3 = str(trackDirPath_mp3)))
+    return trackDirPath_mp3
+
+
+def test_make_parallel_mp3_folder(trackDirPath = _trackDirPath):
+    """
+    Tests make_parallel_mp3_folder.
+    """
+    trackDirPath_mp3 = make_parallel_mp3_folder(trackDirPath = trackDirPath)
+    return trackDirPath
+    
     
 def _script():
     """
