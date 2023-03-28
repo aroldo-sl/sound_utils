@@ -193,7 +193,32 @@ def test_make_parallel_mp3_folder(track_dirPath = _track_dirPath):
     track_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = track_dirPath)
     assert track_dirPath_mp3.is_dir()
     return track_dirPath_mp3
+
+@pytest.mark.xfail(raises = FileNotFoundError)
+def test_make_parallel_mp3_folder_2l(track_dirPath = "xyz"):
+    """
+    xyz does not exist
+    """
+    # this should raise FileNotFoundError:
+    make_parallel_mp3_folder(track_dirPath = track_dirPath)
+    assert True
+
+def test_make_parallel_mp3_folder_3(test_dirPath = "tests"):
+    """
+    The parallel folders exists as a file.
+    """
+    test_dirPath = Path(test_dirPath).expanduser().resolve()
+    tmp_track_dirPath = test_dirPath/"tmp_track_dirPath"
+    tmp_track_dirPath.mkdir(exist_ok = True, parents = True)
+    _slog.info("{tmp_track_dirPath}=".format(tmp_track_dirPath = tmp_track_dirPath))
+    assert True
     
+
+
+    def setup():
+        tmp_track_dirPath= Path("tests/tmp_dirPath")
+
+
     
 def _script():
     """
