@@ -144,7 +144,7 @@ def select_filePaths_wav(dirPath_wav, glob_expression = "*_.wav"):
 
 def make_converting_pairs(dirPath_wav, glob_expression = "*_.wav"):
     """
-    Make a list of the convertiion pairs from wav to mp3 in dirPath_wav.
+    Make a list of the convertion pairs from wav to mp3 in dirPath_wav.
     """
     selected_filePaths_wav = select_filePaths_wav(dirPath_wav = dirPath_wav,
                                                   glob_expression = glob_expression)

@@ -286,6 +286,18 @@ wrong parallel mp3 file:{wrong_filePath}
         pytest.xfail(msg)
     assert True
 
+def convert_wav_to_mp3(filePath_wav, filePath_mp3):
+    """
+    Converts a wav sound file to an mp3 sound file.
+    """
+    filePath_wav = Path(filePath_wav).resolve()
+    filename_wav = str(filePath_wav)
+    _slog.debug(f"converting {filename_wav}")
+    assert filePath_wav.is_file(), f"{filename_wav} is not a file."
+    filename_mp3 = str(filePath_mp3)
+    wav_song = wav(filename_wav)
+    wav_song.export(filename_mp3, format = "mp3", bitrate="192k")
+
 def _script():
     """
     Runs if this module is called as a
