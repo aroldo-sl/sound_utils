@@ -203,7 +203,7 @@ def test_make_parallel_mp3_folder_2l(track_dirPath = "xyz"):
     make_parallel_mp3_folder(track_dirPath = track_dirPath)
     assert True
 
-@pytest.mark.xfail(reason = "The parallel mp3 folder exists as a file.")
+# @pytest.mark.xfail(raises = ValueError)
 def test_make_parallel_mp3_folder_3(test_dirPath = "tests"):
     """
     The parallel folders exists as a file.
@@ -211,17 +211,21 @@ def test_make_parallel_mp3_folder_3(test_dirPath = "tests"):
     test_dirPath = Path(test_dirPath).expanduser().resolve()
     tmp_track_dirPath = test_dirPath/"tmp_track_dirPath"
     tmp_track_dirPath.mkdir(exist_ok = True, parents = True)
-    wrong_filePath = tmp_track_dirPath.with_suffix(suffix)
+    wrong_filePath = tmp_track_dirPath.with_suffix("._mp3")
+    wrong_filePath.touch(exist_ok = True)
     msg_fmt = \
 """
 temporary track folder:{tmp_track_dirPath}
-wrong parallel mp3 folder:{wrong_filePath}                
+wrong parallel mp3 file:{wrong_filePath}                
 """
     msg = msg_fmt.format(
         tmp_track_dirPath = tmp_track_dirPath,
         wrong_filePath = wrong_filePath)
     _slog.info(msg)
-    track_dirpath_mp3 = make_parallel_mp3_folder(track_dirPath = tmp_track_dirPath )
+    try:
+        track_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = tmp_track_dirPath)
+    except ValueError as err:
+        pytest.xfail(err.args[0])
     assert True
 
 def _script():
