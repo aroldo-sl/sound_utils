@@ -191,7 +191,8 @@ def test_make_parallel_mp3_folder(track_dirPath = _track_dirPath):
     Tests make_parallel_mp3_folder.
     """
     track_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = track_dirPath)
-    return track_dirPath
+    assert track_dirPath_mp3.is_dir()
+    return track_dirPath_mp3
     
     
 def _script():
