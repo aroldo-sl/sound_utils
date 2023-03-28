@@ -62,7 +62,7 @@ def retrieve_data_from_yaml(yamlPath):
     """
     yamlPath = Path(yamlPath).expanduser().resolve()
     if not (yamlPath.is_file() and yamlPath.suffix == ".yaml"):
-        raise ValueError("{yaml_filename} is not a yaml file.".format(yaml_filename = yamlPath.name))
+        raise FileExistsError("{yaml_filename} is not a yaml file.".format(yaml_filename = yamlPath.name))
     data = None
     with yamlPath.open() as yaml_stream:
         data = load(yaml_stream, Loader)
@@ -178,7 +178,7 @@ def make_parallel_mp3_folder(track_dirPath):
             track_dirPath = str(track_dirPath)))
     track_dirPath_mp3 = track_dirPath.with_suffix("._mp3")
     if track_dirPath_mp3.is_file():
-        raise ValueError("There is already a file {track_dirPath_mp3}".format(
+        raise FileExistsError("There is already a file {track_dirPath_mp3}".format(
             track_dirPath_mp3 = str(track_dirPath_mp3)))
     track_dirPath_mp3.mkdir(exist_ok = True)
     _slog.info("mp3 files go to {track_dirPath_mp3}".format(
@@ -203,7 +203,7 @@ def test_make_parallel_mp3_folder_2l(track_dirPath = "xyz"):
     make_parallel_mp3_folder(track_dirPath = track_dirPath)
     assert True
 
-# @pytest.mark.xfail(raises = ValueError)
+# @pytest.mark.xfail(raises = FileExistsError)
 def test_make_parallel_mp3_folder_3(test_dirPath = "tests"):
     """
     The parallel folders exists as a file.
@@ -224,8 +224,10 @@ wrong parallel mp3 file:{wrong_filePath}
     _slog.info(msg)
     try:
         track_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = tmp_track_dirPath)
-    except ValueError as err:
-        pytest.xfail(err.args[0])
+    except FileExistsError as err:
+        msg = "\n" + "FileExisError:" + str(err)
+        _slog.debug(msg)
+        pytest.xfail(msg)
     assert True
 
 def _script():
