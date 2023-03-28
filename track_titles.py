@@ -14,7 +14,7 @@ import pytest
 from pprint import pprint, pformat
 from yaml import load, Loader, dump, Dumper
 __level__ = logging.DEBUG
-_trackDirPath = "tests/HL/HL0049-miles-davies-standards"
+_track_dirPath = "tests/HL/HL0049-miles-davies-standards"
 _yamlPath = "tests/HL._yaml/HL0049-miles-davies-standards.yaml"
 
 ######################### <_get_slog>   #########
@@ -81,16 +81,16 @@ def test_retrieve_data_from_yaml(yamlPath = _yamlPath):
     assert data["folder"] == yamlPath.with_suffix("").name
 
 
-def select_original_trackPaths(trackDirPath, suffix = ".wav"):
+def select_original_trackPaths(track_dirPath, suffix = ".wav"):
     """
     Selects and orders the original track paths.
     """
-    trackDirPath=(Path(trackDirPath)).expanduser().resolve()
-    if not trackDirPath.is_dir():
-        msg = "{d} is not a directory".format(d = trackDirPath)
+    track_dirPath=(Path(track_dirPath)).expanduser().resolve()
+    if not track_dirPath.is_dir():
+        msg = "{d} is not a directory".format(d = track_dirPath)
         raise FileNotFoundError(msg)
     trackPaths = []
-    trackPaths = list(trackDirPath.glob("*{suffix}".format(suffix = suffix)))
+    trackPaths = list(track_dirPath.glob("*{suffix}".format(suffix = suffix)))
     trackPaths.sort()
     return trackPaths
 
@@ -105,16 +105,16 @@ def test_select_original_trackPaths_error():
 def test_select_original_trackPaths():
     """
     Tests select_original_trackPaths on a concrete directory.
-    returns trackDirPath, suffix, trackPaths
+    returns track_dirPath, suffix, trackPaths
     """
-    trackDirPath = Path(_trackDirPath)
+    track_dirPath = Path(_track_dirPath)
     suffix = ".wav"
-    trackPaths = select_original_trackPaths(trackDirPath = trackDirPath, suffix = suffix)
+    trackPaths = select_original_trackPaths(track_dirPath = track_dirPath, suffix = suffix)
     assert type(trackPaths) is list
-    return trackDirPath, suffix, trackPaths
+    return track_dirPath, suffix, trackPaths
 
 
-def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
+def make_renaming_pairs(yamlPath, track_dirPath, suffix = ".wav"):
     """
     Makes the renaming pairs.
     """
@@ -128,7 +128,7 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
                                   """)
     track_name_re = track_name_re_template.substitute(suffix = suffix)
     track_name_re = re.compile(track_name_re, re.X)
-    trackPaths = select_original_trackPaths(trackDirPath = trackDirPath,
+    trackPaths = select_original_trackPaths(track_dirPath = track_dirPath,
                                             suffix = suffix)
     track_filenames = [trackPath.name for trackPath in trackPaths]
     track_filename_matches = [track_name_re.match(track_filename) for track_filename in track_filenames]
@@ -155,43 +155,43 @@ def make_renaming_pairs(yamlPath, trackDirPath, suffix = ".wav"):
 
    
 def test_make_renaming_pairs(yamlPath = _yamlPath,
-                             trackDirPath = _trackDirPath,
+                             track_dirPath = _track_dirPath,
                              suffix = ".wav"):
     """
     uses test_select_original_trckPaths.
     """
     renaming_pairs = make_renaming_pairs(yamlPath = yamlPath,
-                                                trackDirPath = trackDirPath,
+                                                track_dirPath = track_dirPath,
                                                 suffix = suffix)
     _slog.debug("\n" + pformat(renaming_pairs))
     assert True
 
 
-def make_parallel_mp3_folder(trackDirPath):
+def make_parallel_mp3_folder(track_dirPath):
     """
     Creates a parallel forder for mp3 sound files.
-    returns trackDirPath_mp3.
+    returns track_dirPath_mp3.
     """
-    trackDirPath = Path(trackDirPath).expanduser().resolve()
-    if not trackDirPath.is_dir():
-        raise FileNotFoundError("{trackDirPath} is not a folder.".format(
-            trackDirPath = str(trackDirPath)))
-    trackDirPath_mp3 = trackDirPath.with_suffix("._mp3")
-    if trackDirPath_mp3.is_file():
-        raise ValueError("There is already a file {trackDirPath_mp3}".format(
-            trackDirPath_mp3 = str(trackDirPath_mp3)))
-    trackDirPath_mp3.mkdir(exist_ok = True)
-    _slog.info("mp3 files go to {trackDirPath_mp3}".format(
-        trackDirPath_mp3 = str(trackDirPath_mp3)))
-    return trackDirPath_mp3
+    track_dirPath = Path(track_dirPath).expanduser().resolve()
+    if not track_dirPath.is_dir():
+        raise FileNotFoundError("{track_dirPath} is not a folder.".format(
+            track_dirPath = str(track_dirPath)))
+    track_dirPath_mp3 = track_dirPath.with_suffix("._mp3")
+    if track_dirPath_mp3.is_file():
+        raise ValueError("There is already a file {track_dirPath_mp3}".format(
+            track_dirPath_mp3 = str(track_dirPath_mp3)))
+    track_dirPath_mp3.mkdir(exist_ok = True)
+    _slog.info("mp3 files go to {track_dirPath_mp3}".format(
+        track_dirPath_mp3 = str(track_dirPath_mp3)))
+    return track_dirPath_mp3
 
 
-def test_make_parallel_mp3_folder(trackDirPath = _trackDirPath):
+def test_make_parallel_mp3_folder(track_dirPath = _track_dirPath):
     """
     Tests make_parallel_mp3_folder.
     """
-    trackDirPath_mp3 = make_parallel_mp3_folder(trackDirPath = trackDirPath)
-    return trackDirPath
+    track_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = track_dirPath)
+    return track_dirPath
     
     
 def _script():
