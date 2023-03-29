@@ -15,6 +15,8 @@ from string import Template
 from pprint import pprint, pformat
 import pytest
 from yaml import load, Loader, dump, Dumper
+from pydub import AudioSegment 
+wav = AudioSegment.from_wav
 
 ######################### <_get_slog>   #########
 def _get_slog ( level = __level__):
@@ -346,17 +348,24 @@ wrong parallel mp3 file:{wrong_filePath}
         pytest.xfail(msg)
     assert True
 
-def convert_wav_to_mp3(filePath_wav, filePath_mp3):
+def convert_wav_to_mp3(track_filePath_wav, track_filePath_mp3):
     """
     Converts a wav sound file to an mp3 sound file.
     """
-    filePath_wav = Path(filePath_wav).resolve()
-    filename_wav = str(filePath_wav)
-    _slog.debug(f"converting {filename_wav}")
-    assert filePath_wav.is_file(), f"{filename_wav} is not a file."
-    filename_mp3 = str(filePath_mp3)
-    wav_song = wav(filename_wav)
-    wav_song.export(filename_mp3, format = "mp3", bitrate="192k")
+    track_filePath_wav = Path(track_filePath_wav).expanduser().resolve()
+    track_filepath_wav = str(track_filePath_wav)
+    _slog.debug("converting {source}".format(source = track_filepath_wav))
+    assert track_filePath_wav.is_file(), "{source} is not a file.".format(source = track_filepath_wav)
+    track_filepath_mp3 = str(track_filePath_mp3)
+    wav_song = wav(track_filepath_wav)
+    wav_song.export(track_filepath_mp3, format = "mp3", bitrate="192k")
+
+def convert_all_wav_to_mp3(dirPath_wav):
+    """
+    Converted sound files go to a parallel dirPath_mp3.
+    """
+
+
 
 def _script():
     """
