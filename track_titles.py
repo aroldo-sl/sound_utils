@@ -349,18 +349,31 @@ wrong parallel mp3 file:{wrong_filePath}
         pytest.xfail(msg)
     assert True
 
-# def convert_wav_to_mp3(source_filePath, target_filePath_mp3):
-#     """
-#     Converts a wav sound file to an mp3 sound file.
-#     """
-#     source_filePath = Path(track_filePath_wav).expanduser().resolve()
-#     source_filepath = str(source_filePath)
-#     _slog.debug("converting {source_filepath}".format(source_filepath = source_filepath))
-#     assert source_filePath.is_file(), "{source_filepath} is not a file.".format(source_filepath = source_filepath)
-#     target_filepath_mp3 = str(target_filePath_mp3)
-#     wav_song = wav(source_filepath)
-#     wav_song.export(track_filepath_mp3, format = "mp3", bitrate="192k")
+def convert_wav_to_mp3(source_filePath, target_filePath_mp3):
+    """
+    Converts a wav sound file to an mp3 sound file.
+    """
+    source_filePath = Path(source_filePath).expanduser().resolve()
+    source_filepath = str(source_filePath)
+    _slog.debug("converting {source_filepath}".format(source_filepath = source_filepath))
+    assert source_filePath.is_file(), "{source_filepath} is not a file.".format(source_filepath = source_filepath)
+    target_filepath_mp3 = str(target_filePath_mp3)
+    wav_song = wav(source_filepath)
+    wav_song.export(target_filepath_mp3, format = "mp3", bitrate="192k")
+    return source_filePath, target_filePath_mp3
 
+def test_convert_wav_to_mp3():
+    source_dirPath = _track_dirPath
+    source_filePath = list(_track_dirPath.glob("*.wav"))[0]
+    target_filePath_mp3 = source_filePath.with_suffix(".mp3")
+    convert_wav_to_mp3(source_filePath = source_filePath,
+                       target_filePath_mp3 = target_filePath_mp3)
+    source_filepath = str(source_filePath)
+    target_filepath_mp3 = str(target_filePath_mp3)
+    _slog.debug("{source_filepath} \n-> {target_filepath_mp3}".format(
+        source_filepath = source_filepath,
+        target_filepath_mp3 = target_filepath_mp3))
+    assert True
 # def make_conversion_filePath_pairs(source_dirPath, suffix = ".wav"):
 #     """
 #     File pars for the conversion of wav sound files to mp3 sound files
@@ -376,11 +389,6 @@ wrong parallel mp3 file:{wrong_filePath}
 #     conversion_filePath_pairs = [(source_filePath, make_target_filePath(source_filePath)) \
 #                                  for source_filePath in source_filePaths]
 #     return conversion_filePath_pairs
-
-
-
-
-
 
 
 def _script():
