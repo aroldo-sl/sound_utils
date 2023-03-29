@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# @file: track_titles.py
-# @date: 2023-03-25T22:17:02
+# @file: sound_utils.py
+# @date: 2023-03-27
 # @author: Aroldo Souza-Leite
-# @description: 
+# @description: renamed from track_title.py
 """
 Retrieves the track titles from .yaml files and
 renames the track files correspondingly.
