@@ -245,7 +245,6 @@ def make_renaming_pairs(yaml_filePath, track_dirPath, suffix = ".wav"):
               renaming_pairs.append((old_name, new_name))
     return renaming_pairs
 
-   
 def test_make_renaming_pairs(yaml_filePath = _yaml_filePath,
                              track_dirPath = _track_dirPath,
                              suffix = ".wav"):
@@ -257,7 +256,6 @@ def test_make_renaming_pairs(yaml_filePath = _yaml_filePath,
                                                 suffix = suffix)
     _slog.debug("\n" + pformat(renaming_pairs))
     assert True
-
 
 def rename_tracks(yaml_filePath, track_dirPath, suffix = "-wav"):
     """
@@ -303,7 +301,6 @@ def make_parallel_mp3_folder(source_dirPath):
     _slog.info("mp3 files go to {target_dirpath_mp3}".format(
         target_dirpath_mp3 = target_dirpath_mp3))
     return target_dirPath_mp3
-
 
 def test_make_parallel_mp3_folder(source_dirPath = _track_dirPath):
     """
