@@ -15,37 +15,6 @@ from string import Template
 from pprint import pprint, pformat
 import pytest
 from yaml import load, Loader, dump, Dumper
-#### test data ###
-_test_dirPath = Path("tests").expanduser().resolve()
-_test_data_dirPath = _test_dirPath/"data"
-_test_data_raw_dirPath = _test_data_dirPath/"raw"
-_test_data_processing_dirPath = _test_data_dirPath/"processing"
-_track_raw_dirPath = _test_data_raw_dirPath/"HL/HL0049-miles-davies-standards"
-_track_processing_dirPath = _test_data_processing_dirPath/"HL/HL0049-miles-davies-standards"
-_track_dirPath = _track_processing_dirPath
-_yamlPath = _test_data_processing_dirPath/"HL._yaml/HL0049-miles-davies-standards.yaml"
-
-_setup_info = \
-f"""
-test_dirPath\n-> {_test_dirPath}
-test_data_dirPath\n-> {_test_data_dirPath}
-test_data_raw_dirPath\n-> {_test_data_raw_dirPath}
-test_data_processing_dirPath\n-> {_test_data_processing_dirPath}
-track_raw_dirPath\n-> {_track_raw_dirPath}
-track_processing_dirPath\n-> {_track_processing_dirPath}
-track_dirPath\n-> {_track_dirPath}
-yamlPath\n-> {_yamlPath}
-"""
-
-def _setup():
-    """
-    Setting up the test environment.
-    """
-    shutil.copytree(src = _test_data_raw_dirPath,
-                    dst = _test_data_processing_dirPath,
-                    dirs_exist_ok = True)
-
-_setup()    
 
 ######################### <_get_slog>   #########
 def _get_slog ( level = __level__):
@@ -83,6 +52,42 @@ def _get_slog ( level = __level__):
 ######################### </_get_slog>  #########
 
 _slog = _get_slog(level = __level__)
+
+#### test data ###
+_test_dirPath = Path("tests").expanduser().resolve()
+_test_data_dirPath = _test_dirPath/"data"
+_test_data_raw_dirPath = _test_data_dirPath/"raw"
+_test_data_processing_dirPath = _test_data_dirPath/"processing"
+_track_raw_dirPath = _test_data_raw_dirPath/"HL/HL0049-miles-davies-standards"
+_track_processing_dirPath = _test_data_processing_dirPath/"HL/HL0049-miles-davies-standards"
+_track_dirPath = _track_processing_dirPath
+_yamlPath = _test_data_processing_dirPath/"HL._yaml/HL0049-miles-davies-standards.yaml"
+
+_setup_info = \
+f"""
+test_dirPath\n-> {_test_dirPath}
+test_data_dirPath\n-> {_test_data_dirPath}
+test_data_raw_dirPath\n-> {_test_data_raw_dirPath}
+test_data_processing_dirPath\n-> {_test_data_processing_dirPath}
+track_raw_dirPath\n-> {_track_raw_dirPath}
+track_processing_dirPath\n-> {_track_processing_dirPath}
+track_dirPath\n-> {_track_dirPath}
+yamlPath\n-> {_yamlPath}
+"""
+
+def _setup_test_data():
+    """
+    Setting up the test environment.
+    """
+    _slog.debug("building test data:\n" + _setup_info)
+    shutil.copytree(src = _test_data_raw_dirPath,
+                    dst = _test_data_processing_dirPath,
+                    dirs_exist_ok = True)
+    _slog.debug("test data ready.")
+
+_setup_test_data()    
+
+
 
 ## to unhide a code block got to the block top and press "<f5> h"
 
