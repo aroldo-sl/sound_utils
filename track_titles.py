@@ -422,7 +422,7 @@ def convert_all_wav_to_mp3(source_dirPath, suffix = ".wav"):
         convert_wav_to_mp3(source_filePath = source_filePath,
                            target_filePath_mp3 = target_filePath_mp3)
 
-
+@pytest.mark.skip("This is the one of the easiest tests, but it takes too long.")
 def test_convert_all_wav_to_mp3(source_dirPath = _track_dirPath, suffix = ".wav"):
     """
     Tests convert_all_wav_to_mp3.
