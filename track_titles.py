@@ -61,7 +61,7 @@ _test_data_processing_dirPath = _test_data_dirPath/"processing"
 _track_raw_dirPath = _test_data_raw_dirPath/"HL/HL0049-miles-davies-standards"
 _track_processing_dirPath = _test_data_processing_dirPath/"HL/HL0049-miles-davies-standards"
 _track_dirPath = _track_processing_dirPath
-_yamlPath = _test_data_processing_dirPath/"HL._yaml/HL0049-miles-davies-standards.yaml"
+_yaml_filePath = _test_data_processing_dirPath/"HL._yaml/HL0049-miles-davies-standards.yaml"
 
 _setup_info = \
 f"""
@@ -72,7 +72,7 @@ test_data_processing_dirPath\n-> {_test_data_processing_dirPath}
 track_raw_dirPath\n-> {_track_raw_dirPath}
 track_processing_dirPath\n-> {_track_processing_dirPath}
 track_dirPath\n-> {_track_dirPath}
-yamlPath\n-> {_yamlPath}
+yaml_filePath\n-> {_yaml_filePath}
 """
 
 def _build_data():
@@ -146,29 +146,29 @@ def test_TrackName_BadString():
         pytest.fail(str(exc), pytrace = False)
 
 
-def retrieve_data_from_yaml(yamlPath):
+def retrieve_data_from_yaml(yaml_filePath):
     """
     Retrieves the track titles from a yaml file,
     """
-    yamlPath = Path(yamlPath).expanduser().resolve()
-    if not (yamlPath.is_file() and yamlPath.suffix == ".yaml"):
-        raise ValueError("{yaml_filename} is not a yaml file.".format(yaml_filename = yamlPath.name))
+    yaml_filePath = Path(yaml_filePath).expanduser().resolve()
+    if not (yaml_filePath.is_file() and yaml_filePath.suffix == ".yaml"):
+        raise ValueError("{yaml_filename} is not a yaml file.".format(yaml_filename = yaml_filePath.name))
     data = None
-    with yamlPath.open() as yaml_stream:
+    with yaml_filePath.open() as yaml_stream:
         data = load(yaml_stream, Loader)
     return data
 
-def test_retrieve_data_from_yaml(yamlPath = _yamlPath):
+def test_retrieve_data_from_yaml(yaml_filePath = _yaml_filePath):
     """
     Uses a test yaml file.
     """
-    yamlPath = Path(yamlPath).expanduser().resolve()
-    if not yamlPath.is_file():
-        raise ValueError(str(yamlPath))
+    yaml_filePath = Path(yaml_filePath).expanduser().resolve()
+    if not yaml_filePath.is_file():
+        raise ValueError(str(yaml_filePath))
     #
-    data = retrieve_data_from_yaml(yamlPath = yamlPath)
+    data = retrieve_data_from_yaml(yaml_filePath = yaml_filePath)
     assert type(data) is dict
-    assert data["folder"] == yamlPath.with_suffix("").name
+    assert data["folder"] == yaml_filePath.with_suffix("").name
 
 
 def select_original_trackPaths(track_dirPath, suffix = ".wav"):
@@ -204,7 +204,7 @@ def test_select_original_trackPaths():
     return track_dirPath, suffix, trackPaths
 
 
-def make_renaming_pairs(yamlPath, track_dirPath, suffix = ".wav"):
+def make_renaming_pairs(yaml_filePath, track_dirPath, suffix = ".wav"):
     """
     Makes the renaming pairs.
     """
@@ -229,7 +229,7 @@ def make_renaming_pairs(yamlPath, track_dirPath, suffix = ".wav"):
                                "underscore":track_filename_match.group("underscore"),
                                "suffix": track_filename_match.group("suffix")} 
                              for  track_filename_match in track_filename_matches}
-    yaml_data = retrieve_data_from_yaml(yamlPath = yamlPath)
+    yaml_data = retrieve_data_from_yaml(yaml_filePath = yaml_filePath)
     yaml_tracks_dict = yaml_data["tracks"]
     yaml_tracks_dict = {"{:>02}".format(key):value for key,value in yaml_tracks_dict.items()}
     yaml_tracks_dict = {key:value["ascii"] for key, value in yaml_tracks_dict.items()}
@@ -244,13 +244,13 @@ def make_renaming_pairs(yamlPath, track_dirPath, suffix = ".wav"):
     return renaming_pairs
 
    
-def test_make_renaming_pairs(yamlPath = _yamlPath,
+def test_make_renaming_pairs(yaml_filePath = _yaml_filePath,
                              track_dirPath = _track_dirPath,
                              suffix = ".wav"):
     """
     uses test_select_original_trckPaths.
     """
-    renaming_pairs = make_renaming_pairs(yamlPath = yamlPath,
+    renaming_pairs = make_renaming_pairs(yaml_filePath = yaml_filePath,
                                                 track_dirPath = track_dirPath,
                                                 suffix = suffix)
     _slog.debug("\n" + pformat(renaming_pairs))
