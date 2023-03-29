@@ -75,7 +75,7 @@ track_dirPath\n-> {_track_dirPath}
 yamlPath\n-> {_yamlPath}
 """
 
-def _setup_test_data():
+def _build_data():
     """
     Setting up the test environment.
     """
@@ -85,7 +85,7 @@ def _setup_test_data():
                     dirs_exist_ok = True)
     _slog.debug("test data ready.")
 
-_setup_test_data()    
+_build_data()    
 
 
 
