@@ -361,6 +361,7 @@ wrong parallel mp3 file:{wrong_filePath}
         pytest.xfail(msg)
     assert True
 
+#
 def convert_wav_to_mp3(source_filePath, target_filePath_mp3):
     """
     Converts a wav sound file to an mp3 sound file.
@@ -374,6 +375,7 @@ def convert_wav_to_mp3(source_filePath, target_filePath_mp3):
     wav_song.export(target_filepath_mp3, format = "mp3", bitrate="192k")
     return source_filePath, target_filePath_mp3
 
+#
 def test_convert_wav_to_mp3():
     source_dirPath = _track_dirPath
     source_filePaths = list(_track_dirPath.glob("*.wav"))
@@ -394,6 +396,7 @@ def test_convert_wav_to_mp3():
     # tear down
     target_filePath_mp3.unlink()
 
+#
 def make_conversion_filePath_pairs(source_dirPath, suffix = ".wav"):
     """
     File pairs for the conversion of wav sound files to mp3 sound files
@@ -413,6 +416,7 @@ def make_conversion_filePath_pairs(source_dirPath, suffix = ".wav"):
                                  for source_filePath in source_filePaths]
     return conversion_filePath_pairs
 
+#
 def test_make_conversion_filePath_pairs(source_dirPath = _track_dirPath, suffix = ".wav"):
     """
     Tests make_convertion_filePath_pairs.
@@ -421,6 +425,7 @@ def test_make_conversion_filePath_pairs(source_dirPath = _track_dirPath, suffix 
     _slog.debug(pformat(conversion_filePath_pairs))
     assert True
 
+#
 def convert_all_wav_to_mp3(source_dirPath, suffix = ".wav"):
     """
     Converts all wav files from sourceFolder to mp3 in
@@ -433,6 +438,7 @@ def convert_all_wav_to_mp3(source_dirPath, suffix = ".wav"):
         convert_wav_to_mp3(source_filePath = source_filePath,
                            target_filePath_mp3 = target_filePath_mp3)
 
+#
 @pytest.mark.skip("This is the one of the easiest tests, but it takes too long.")
 def test_convert_all_wav_to_mp3(source_dirPath = _track_dirPath, suffix = ".wav"):
     """
@@ -441,7 +447,7 @@ def test_convert_all_wav_to_mp3(source_dirPath = _track_dirPath, suffix = ".wav"
     convert_all_wav_to_mp3(source_dirPath = source_dirPath, suffix = suffix)
     assert True
 
-
+#
 def _script():
     """
     Runs if this module is called as a
@@ -450,6 +456,7 @@ def _script():
     _slog.info("Running " + __file__)
     pytest.main(["-v", __file__])
 
+#
 if __name__ == "__main__":
    _script()
 
