@@ -257,6 +257,37 @@ def test_make_renaming_pairs(yaml_filePath = _yaml_filePath,
     assert True
 
 
+def rename_tracks(yaml_filePath, track_dirPath, suffix = "-wav"):
+    """
+    Uses make_renaming_pairs.
+    """
+    renaming_pairs = make_renaming_pairs(yaml_filePath = yaml_filePath,
+                                         track_dirPath = track_dirPath,
+                                         suffix = suffix)
+    renaming_filePath_pairs = [(yaml_filePath/old_name, yaml_filePath/new_name)\
+                                for (old_name, new_name) in renaming_pairs]
+    return renaming_filePath_pairs
+
+def test_rename_tracks(yaml_filePath = _yaml_filePath,
+                         track_dirPath = _track_dirPath,
+                         suffix = ".wav"):
+    """
+    Tests renaming_tracks.
+    """
+    renaming_filePath_pairs = rename_tracks(yaml_filePath = yaml_filePath,
+                                            track_dirPath = track_dirPath,
+                                            suffix = suffix)
+    _slog.debug(pformat(renaming_filePath_pairs))
+    assert True
+
+
+
+
+
+
+                                 
+
+
 def make_parallel_mp3_folder(track_dirPath):
     """
     Creates a parallel forder for mp3 sound files.
