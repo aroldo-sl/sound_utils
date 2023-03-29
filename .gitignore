@@ -158,6 +158,9 @@ syntax: regexp
 # [log]
 .*\.log\.\d{1,2}$
 
+# [tests]
+tests/data/
+tmp/
 
 
 

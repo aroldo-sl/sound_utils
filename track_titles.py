@@ -7,15 +7,45 @@
 Retriev the track titles from .yaml files and
 rename the track files correspondingly.
 """
-import os, sys, logging, re
-from string import Template
-from pathlib import Path
-import pytest
-from pprint import pprint, pformat
-from yaml import load, Loader, dump, Dumper
+import logging
 __level__ = logging.DEBUG
-_track_dirPath = "tests/HL/HL0049-miles-davies-standards"
-_yamlPath = "tests/HL._yaml/HL0049-miles-davies-standards.yaml"
+import os, shutil, sys, logging, re
+from pathlib import Path
+from string import Template
+from pprint import pprint, pformat
+import pytest
+from yaml import load, Loader, dump, Dumper
+#### test data ###
+_test_dirPath = Path("tests").expanduser().resolve()
+_test_data_dirPath = _test_dirPath/"data"
+_test_data_raw_dirPath = _test_data_dirPath/"raw"
+_test_data_processing_dirPath = _test_data_dirPath/"processing"
+_track_raw_dirPath = _test_data_raw_dirPath/"HL/HL0049-miles-davies-standards"
+_track_processing_dirPath = _test_data_processing_dirPath/"HL/HL0049-miles-davies-standards"
+_track_dirPath = _track_processing_dirPath
+_yamlPath = _test_data_processing_dirPath/"HL._yaml/HL0049-miles-davies-standards.yaml"
+
+_setup_info = \
+f"""
+test_dirPath\n-> {_test_dirPath}
+test_data_dirPath\n-> {_test_data_dirPath}
+test_data_raw_dirPath\n-> {_test_data_raw_dirPath}
+test_data_processing_dirPath\n-> {_test_data_processing_dirPath}
+track_raw_dirPath\n-> {_track_raw_dirPath}
+track_processing_dirPath\n-> {_track_processing_dirPath}
+track_dirPath\n-> {_track_dirPath}
+yamlPath\n-> {_yamlPath}
+"""
+
+def _setup():
+    """
+    Setting up the test environment.
+    """
+    shutil.copytree(src = _test_data_raw_dirPath,
+                    dst = _test_data_processing_dirPath,
+                    dirs_exist_ok = True)
+
+_setup()    
 
 ######################### <_get_slog>   #########
 def _get_slog ( level = __level__):
@@ -118,7 +148,7 @@ def retrieve_data_from_yaml(yamlPath):
     """
     yamlPath = Path(yamlPath).expanduser().resolve()
     if not (yamlPath.is_file() and yamlPath.suffix == ".yaml"):
-        raise FileExistsError("{yaml_filename} is not a yaml file.".format(yaml_filename = yamlPath.name))
+        raise ValueError("{yaml_filename} is not a yaml file.".format(yaml_filename = yamlPath.name))
     data = None
     with yamlPath.open() as yaml_stream:
         data = load(yaml_stream, Loader)
@@ -130,7 +160,7 @@ def test_retrieve_data_from_yaml(yamlPath = _yamlPath):
     """
     yamlPath = Path(yamlPath).expanduser().resolve()
     if not yamlPath.is_file():
-        raise FileNotFoundError(str(yamlPath))
+        raise ValueError(str(yamlPath))
     #
     data = retrieve_data_from_yaml(yamlPath = yamlPath)
     assert type(data) is dict
