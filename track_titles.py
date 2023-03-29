@@ -408,6 +408,27 @@ def test_make_conversion_filePath_pairs(source_dirPath = _track_dirPath, suffix 
     _slog.debug(pformat(conversion_filePath_pairs))
     assert True
 
+def convert_all_wav_to_mp3(source_dirPath, suffix = ".wav"):
+    """
+    Converts all wav files from sourceFolder to mp3 in
+    a parallel folder.
+    """
+    source_dirPath = Path(source_dirPath).expanduser().resolve()
+    conversion_filePath_pairs = make_conversion_filePath_pairs(
+        source_dirPath = source_dirPath, suffix = suffix)
+    for source_filePath, target_filePath_mp3 in conversion_filePath_pairs:
+        convert_wav_to_mp3(source_filePath = source_filePath,
+                           target_filePath_mp3 = target_filePath_mp3)
+
+
+def test_convert_all_wav_to_mp3(source_dirPath = _track_dirPath, suffix = ".wav"):
+    """
+    Tests convert_all_wav_to_mp3.
+    """
+    convert_all_wav_to_mp3(source_dirPath = source_dirPath, suffix = suffix)
+    assert True
+
+
 def _script():
     """
     Runs if this module is called as a
