@@ -311,6 +311,8 @@ def test_make_parallel_mp3_folder(source_dirPath = _track_dirPath):
     """
     target_dirPath_mp3 = make_parallel_mp3_folder(source_dirPath = source_dirPath)
     assert target_dirPath_mp3.is_dir()
+    # tear down
+    shutil.rmtree(target_dirPath_mp3)
     return target_dirPath_mp3
 
 @pytest.mark.xfail(raises = FileNotFoundError, reason = "a FileNotFoundError war raised")
