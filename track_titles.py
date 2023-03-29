@@ -4,8 +4,10 @@
 # @author: Aroldo Souza-Leite
 # @description: 
 """
-Retriev the track titles from .yaml files and
-rename the track files correspondingly.
+Retrieves the track titles from .yaml files and
+renames the track files correspondingly.
+Utilities for converting the songs of an entire
+album from wav to mp3.
 """
 import logging
 __level__ = logging.DEBUG
@@ -257,7 +259,7 @@ def test_make_renaming_pairs(yaml_filePath = _yaml_filePath,
     _slog.debug("\n" + pformat(renaming_pairs))
     assert True
 
-def rename_tracks(yaml_filePath, track_dirPath, suffix = "-wav"):
+def rename_tracks(yaml_filePath, track_dirPath, suffix = ".wav"):
     """
     Uses make_renaming_pairs.
     """
