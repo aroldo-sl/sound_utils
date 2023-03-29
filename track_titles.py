@@ -395,6 +395,7 @@ def make_conversion_filePath_pairs(source_dirPath, suffix = ".wav"):
         target_filename = source_filePath.with_suffix(".mp3").name
         assert type(target_filename) is str
         target_filePath = target_dirPath_mp3/target_filename
+        return target_filePath
     conversion_filePath_pairs = [(source_filePath, make_target_filePath(source_filePath)) \
                                  for source_filePath in source_filePaths]
     return conversion_filePath_pairs
@@ -403,7 +404,8 @@ def test_make_conversion_filePath_pairs(source_dirPath = _track_dirPath, suffix 
     """
     Tests make_convertion_filePath_pairs.
     """
-    ĉonversion_filePath_pairs = make_conversion_filePath_pairs (source_dirPath = source_dirPath)
+    conversion_filePath_pairs = make_conversion_filePath_pairs (source_dirPath = source_dirPath)
+    _slog.debug(pformat(conversion_filePath_pairs))
     assert True
 
 def _script():
