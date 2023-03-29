@@ -84,8 +84,7 @@ def _build_data():
                     dst = _test_data_processing_dirPath,
                     dirs_exist_ok = True)
     _slog.debug("test data ready.")
-
-_build_data()    
+_build_data()
 
 
 
