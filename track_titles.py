@@ -364,31 +364,39 @@ def convert_wav_to_mp3(source_filePath, target_filePath_mp3):
 
 def test_convert_wav_to_mp3():
     source_dirPath = _track_dirPath
-    source_filePath = list(_track_dirPath.glob("*.wav"))[0]
+    source_filePaths = list(_track_dirPath.glob("*.wav"))
+    source_filePaths.sort()
+    source_filePath = source_filePaths[0]
     target_filePath_mp3 = source_filePath.with_suffix(".mp3")
     convert_wav_to_mp3(source_filePath = source_filePath,
                        target_filePath_mp3 = target_filePath_mp3)
     source_filepath = str(source_filePath)
     target_filepath_mp3 = str(target_filePath_mp3)
-    _slog.debug("{source_filepath} \n-> {target_filepath_mp3}".format(
+    _slog.debug("\nconverting {source_filepath} \n-> {target_filepath_mp3}\n".format(
         source_filepath = source_filepath,
         target_filepath_mp3 = target_filepath_mp3))
-    assert True
-# def make_conversion_filePath_pairs(source_dirPath, suffix = ".wav"):
-#     """
-#     File pars for the conversion of wav sound files to mp3 sound files
-#     in a parallel folder.
-#     """
-#     source_dirPath = Path(source_dirPath).expanduser().resolve()
-#     assert source_dirPath.is_dir(), "{source_dirPath} is not a directory".format(source_dirPath = source_dirPath)
-#     target_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = source_dirPath)
-#     source_filePaths = list(source_dirPath.glob("*" + suffix))
-#     def make_target_filePath(source_filePath):
-#         target_filename_= source_filePath.with_suffix(".mp3").name
-#         target_filePath = track_dirPath_mp3/target_filename
-#     conversion_filePath_pairs = [(source_filePath, make_target_filePath(source_filePath)) \
-#                                  for source_filePath in source_filePaths]
-#     return conversion_filePath_pairs
+
+    assert target_filePath_mp3.is_file(), \
+        "failed to create {target_filepath_mp3}".format(
+            target_filepath_mp3 = target_filepath_mp3)
+    # tear down
+    target_filePath_mp3.unlink()
+
+def make_conversion_filePath_pairs(source_dirPath, suffix = ".wav"):
+    """
+    File pars for the conversion of wav sound files to mp3 sound files
+    in a parallel folder.
+    """
+    source_dirPath = Path(source_dirPath).expanduser().resolve()
+    assert source_dirPath.is_dir(), "{source_dirPath} is not a directory".format(source_dirPath = source_dirPath)
+    target_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = source_dirPath)
+    source_filePaths = list(source_dirPath.glob("*" + suffix))
+    def make_target_filePath(source_filePath):
+        target_filename_= source_filePath.with_suffix(".mp3").name
+        target_filePath = track_dirPath_mp3/target_filename
+    conversion_filePath_pairs = [(source_filePath, make_target_filePath(source_filePath)) \
+                                 for source_filePath in source_filePaths]
+    return conversion_filePath_pairs
 
 
 def _script():
