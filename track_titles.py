@@ -91,9 +91,9 @@ def _build_data():
 _build_data()
 
 
-
 ## to unhide a code block got to the block top and press "<f5> h"
 
+#
 class TrackName:
     """
     The track filename should have the form
@@ -132,7 +132,7 @@ class TrackName:
         filename_re
         """
         self.normalized_name = "normalized " + self.name
-
+#
 def test_TrackName_1():
     """
     tests the TrackName class.
@@ -141,6 +141,7 @@ def test_TrackName_1():
     name_obj = TrackName(name)
     assert name_obj.name == "Track 1.wav"
 
+#
 @pytest.mark.xfail(reason = "The track name has the wrong format.")
 def test_TrackName_BadString():
     name = "trash.rubbish"
@@ -149,7 +150,7 @@ def test_TrackName_BadString():
     except TrackName.BadString as exc:
         pytest.fail(str(exc), pytrace = False)
 
-
+#
 def retrieve_data_from_yaml(yaml_filePath):
     """
     Retrieves the track titles from a yaml file,
@@ -162,6 +163,7 @@ def retrieve_data_from_yaml(yaml_filePath):
         data = load(yaml_stream, Loader)
     return data
 
+#
 def test_retrieve_data_from_yaml(yaml_filePath = _yaml_filePath):
     """
     Uses a test yaml file.
@@ -174,7 +176,7 @@ def test_retrieve_data_from_yaml(yaml_filePath = _yaml_filePath):
     assert type(data) is dict
     assert data["folder"] == yaml_filePath.with_suffix("").name
 
-
+#
 def select_original_trackPaths(track_dirPath, suffix = ".wav"):
     """
     Selects and orders the original track paths.
@@ -188,6 +190,7 @@ def select_original_trackPaths(track_dirPath, suffix = ".wav"):
     trackPaths.sort()
     return trackPaths
 
+#
 def test_select_original_trackPaths_error():
     """
     Tests the FileNotFoundError.
@@ -196,6 +199,7 @@ def test_select_original_trackPaths_error():
         tracks = select_original_trackPaths("xy")
     assert True
 
+#
 def test_select_original_trackPaths():
     """
     Tests select_original_trackPaths on a concrete directory.
@@ -208,6 +212,7 @@ def test_select_original_trackPaths():
     return track_dirPath, suffix, trackPaths
 
 
+#
 def make_renaming_pairs(yaml_filePath, track_dirPath, suffix = ".wav"):
     """
     Makes the renaming pairs.
@@ -247,6 +252,7 @@ def make_renaming_pairs(yaml_filePath, track_dirPath, suffix = ".wav"):
               renaming_pairs.append((old_name, new_name))
     return renaming_pairs
 
+#
 def test_make_renaming_pairs(yaml_filePath = _yaml_filePath,
                              track_dirPath = _track_dirPath,
                              suffix = ".wav"):
@@ -259,6 +265,7 @@ def test_make_renaming_pairs(yaml_filePath = _yaml_filePath,
     _slog.debug("\n" + pformat(renaming_pairs))
     assert True
 
+#
 def rename_tracks(yaml_filePath, track_dirPath, suffix = ".wav"):
     """
     Uses make_renaming_pairs.
@@ -272,6 +279,7 @@ def rename_tracks(yaml_filePath, track_dirPath, suffix = ".wav"):
         filePath.rename(target_filePath)
     return renaming_filePath_pairs
 
+#
 def test_rename_tracks(yaml_filePath = _yaml_filePath,
                          track_dirPath = _track_dirPath,
                          suffix = ".wav"):
@@ -284,7 +292,7 @@ def test_rename_tracks(yaml_filePath = _yaml_filePath,
     _slog.debug(pformat(renaming_filePath_pairs))
     assert True
 
-
+#
 def make_parallel_mp3_folder(source_dirPath):
     """
     Creates a parallel forder for mp3 sound files.
@@ -304,6 +312,7 @@ def make_parallel_mp3_folder(source_dirPath):
         target_dirpath_mp3 = target_dirpath_mp3))
     return target_dirPath_mp3
 
+#
 def test_make_parallel_mp3_folder(source_dirPath = _track_dirPath):
     """
     Tests make_parallel_mp3_folder.
@@ -314,6 +323,7 @@ def test_make_parallel_mp3_folder(source_dirPath = _track_dirPath):
     shutil.rmtree(target_dirPath_mp3)
     return target_dirPath_mp3
 
+#
 @pytest.mark.xfail(raises = FileNotFoundError, reason = "a FileNotFoundError war raised")
 def test_make_parallel_mp3_folder_2l(source_dirPath = "xyz"):
     """
@@ -323,7 +333,8 @@ def test_make_parallel_mp3_folder_2l(source_dirPath = "xyz"):
     make_parallel_mp3_folder(source_dirPath = source_dirPath)
     assert True
 
-# @pytest.mark.xfail(raises = FileExistsError)
+#
+@pytest.mark.xfail(raises = FileExistsError)
 def test_make_parallel_mp3_folder_3(test_dirPath = "tests"):
     """
     The parallel folders exists as a file.
