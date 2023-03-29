@@ -285,40 +285,41 @@ def test_rename_tracks(yaml_filePath = _yaml_filePath,
     assert True
 
 
-def make_parallel_mp3_folder(track_dirPath):
+def make_parallel_mp3_folder(source_dirPath):
     """
     Creates a parallel forder for mp3 sound files.
-    returns track_dirPath_mp3.
+    returns target_dirPath_mp3.
     """
-    track_dirPath = Path(track_dirPath).expanduser().resolve()
-    if not track_dirPath.is_dir():
-        raise FileNotFoundError("{track_dirPath} is not a folder.".format(
-            track_dirPath = str(track_dirPath)))
-    track_dirPath_mp3 = track_dirPath.with_suffix("._mp3")
-    if track_dirPath_mp3.is_file():
-        raise FileExistsError("There is already a file {track_dirPath_mp3}".format(
-            track_dirPath_mp3 = str(track_dirPath_mp3)))
-    track_dirPath_mp3.mkdir(exist_ok = True)
-    _slog.info("mp3 files go to {track_dirPath_mp3}".format(
-        track_dirPath_mp3 = str(track_dirPath_mp3)))
-    return track_dirPath_mp3
+    source_dirPath = Path(source_dirPath).expanduser().resolve()
+    if not source_dirPath.is_dir():
+        raise FileNotFoundError("{source_dirPath} is not a folder.".format(
+            source_dirPath = str(source_dirPath)))
+    target_dirPath_mp3 = source_dirPath.with_suffix("._mp3")
+    target_dirpath_mp3 = str(target_dirPath_mp3)
+    if target_dirPath_mp3.is_file():
+        raise FileExistsError("There is already a file {target_dirpath_mp3}".format(
+            target_dirpath_mp3 = target_dirpath_mp3))
+    target_dirPath_mp3.mkdir(exist_ok = True)
+    _slog.info("mp3 files go to {target_dirpath_mp3}".format(
+        target_dirpath_mp3 = target_dirpath_mp3))
+    return target_dirPath_mp3
 
 
-def test_make_parallel_mp3_folder(track_dirPath = _track_dirPath):
+def test_make_parallel_mp3_folder(source_dirPath = _track_dirPath):
     """
     Tests make_parallel_mp3_folder.
     """
-    track_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = track_dirPath)
-    assert track_dirPath_mp3.is_dir()
-    return track_dirPath_mp3
+    target_dirPath_mp3 = make_parallel_mp3_folder(source_dirPath = source_dirPath)
+    assert target_dirPath_mp3.is_dir()
+    return target_dirPath_mp3
 
 @pytest.mark.xfail(raises = FileNotFoundError, reason = "a FileNotFoundError war raised")
-def test_make_parallel_mp3_folder_2l(track_dirPath = "xyz"):
+def test_make_parallel_mp3_folder_2l(source_dirPath = "xyz"):
     """
     xyz does not exist
     """
     # this should raise FileNotFoundError:
-    make_parallel_mp3_folder(track_dirPath = track_dirPath)
+    make_parallel_mp3_folder(source_dirPath = source_dirPath)
     assert True
 
 # @pytest.mark.xfail(raises = FileExistsError)
@@ -341,29 +342,44 @@ wrong parallel mp3 file:{wrong_filePath}
         wrong_filePath = wrong_filePath)
     _slog.info(msg)
     try:
-        track_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = tmp_track_dirPath)
+        track_dirPath_mp3 = make_parallel_mp3_folder(source_dirPath = tmp_track_dirPath)
     except FileExistsError as err:
         msg = "\n" + "FileExisError:" + str(err)
         _slog.debug(msg)
         pytest.xfail(msg)
     assert True
 
-def convert_wav_to_mp3(track_filePath_wav, track_filePath_mp3):
-    """
-    Converts a wav sound file to an mp3 sound file.
-    """
-    track_filePath_wav = Path(track_filePath_wav).expanduser().resolve()
-    track_filepath_wav = str(track_filePath_wav)
-    _slog.debug("converting {source}".format(source = track_filepath_wav))
-    assert track_filePath_wav.is_file(), "{source} is not a file.".format(source = track_filepath_wav)
-    track_filepath_mp3 = str(track_filePath_mp3)
-    wav_song = wav(track_filepath_wav)
-    wav_song.export(track_filepath_mp3, format = "mp3", bitrate="192k")
+# def convert_wav_to_mp3(source_filePath, target_filePath_mp3):
+#     """
+#     Converts a wav sound file to an mp3 sound file.
+#     """
+#     source_filePath = Path(track_filePath_wav).expanduser().resolve()
+#     source_filepath = str(source_filePath)
+#     _slog.debug("converting {source_filepath}".format(source_filepath = source_filepath))
+#     assert source_filePath.is_file(), "{source_filepath} is not a file.".format(source_filepath = source_filepath)
+#     target_filepath_mp3 = str(target_filePath_mp3)
+#     wav_song = wav(source_filepath)
+#     wav_song.export(track_filepath_mp3, format = "mp3", bitrate="192k")
 
-def convert_all_wav_to_mp3(dirPath_wav):
-    """
-    Converted sound files go to a parallel dirPath_mp3.
-    """
+# def make_conversion_filePath_pairs(source_dirPath, suffix = ".wav"):
+#     """
+#     File pars for the conversion of wav sound files to mp3 sound files
+#     in a parallel folder.
+#     """
+#     source_dirPath = Path(source_dirPath).expanduser().resolve()
+#     assert source_dirPath.is_dir(), "{source_dirPath} is not a directory".format(source_dirPath = source_dirPath)
+#     target_dirPath_mp3 = make_parallel_mp3_folder(track_dirPath = source_dirPath)
+#     source_filePaths = list(source_dirPath.glob("*" + suffix))
+#     def make_target_filePath(source_filePath):
+#         target_filename_= source_filePath.with_suffix(".mp3").name
+#         target_filePath = track_dirPath_mp3/target_filename
+#     conversion_filePath_pairs = [(source_filePath, make_target_filePath(source_filePath)) \
+#                                  for source_filePath in source_filePaths]
+#     return conversion_filePath_pairs
+
+
+
+
 
 
 
