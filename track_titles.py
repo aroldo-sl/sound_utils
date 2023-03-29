@@ -266,8 +266,8 @@ def rename_tracks(yaml_filePath, track_dirPath, suffix = "-wav"):
                                          suffix = suffix)
     renaming_filePath_pairs = [(track_dirPath/old_name, track_dirPath/new_name)\
                                 for (old_name, new_name) in renaming_pairs]
-    # for filePath, target_filePath in renaming_filePath_pairs:
-    #     filePath.rename(target_filePath)
+    for filePath, target_filePath in renaming_filePath_pairs:
+        filePath.rename(target_filePath)
     return renaming_filePath_pairs
 
 def test_rename_tracks(yaml_filePath = _yaml_filePath,
