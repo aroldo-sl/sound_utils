@@ -57,6 +57,11 @@ def _get_slog ( level = __level__):
 
 _slog = _get_slog(level = __level__)
 
+class Gestell:
+    """
+    Die Rahmenbedingungen für die Tests.
+    """
+
 #### test data ###
 _test_dirPath = Path("tests").expanduser().resolve()
 _test_data_dirPath = _test_dirPath/"data"
@@ -455,6 +460,7 @@ def _script():
     """
     _slog.info("Running " + __file__)
     pytest.main(["-v", __file__])
+
 
 #
 if __name__ == "__main__":
